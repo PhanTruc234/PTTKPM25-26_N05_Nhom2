@@ -6,7 +6,7 @@
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <span>
-                        <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                        <img alt="image" class="img-circle" style="width:40px; height:40px; object-fit:cover;" src="https://cafefcdn.com/203337114487263232/2023/9/10/ai-1-2024-1694311345299-16943113463961135970938.jpg" />
                     </span>
                     
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
