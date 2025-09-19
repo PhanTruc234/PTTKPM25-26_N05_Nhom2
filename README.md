@@ -43,14 +43,12 @@
 
 ## 🛠️ Công Nghệ Sử Dụng
 
-| Công nghệ           | Vai trò chính                        |
-|---------------------|--------------------------------------|
-| **Laravel**         | Framework PHP backend chính          |
-| **Laravel Breeze**  | Xác thực người dùng, session         |
-| **Blade + Tailwind CSS** | Giao diện frontend nhẹ, đẹp      |
-| **MySQL (Aiven)**   | Cơ sở dữ liệu chính                  |
-| **Eloquent ORM**    | Xử lý dữ liệu dạng hướng đối tượng   |
-| **Middleware**      | Bảo mật & kiểm soát truy cập         |
+| Công nghệ           | Vai trò chính                           |
+|---------------------|-----------------------------------------|
+| **ReactJS**         | Frontend: giao diện người dùng,component|
+| **NestJS**          | Backend: xử lý API, business logic      |
+| **Tailwind CSS**    | Giao diện frontend nhẹ, đẹp             |
+| **MongoDB**         | Cơ sở dữ liệu chính                     |
 
----
+
 
