@@ -18,6 +18,8 @@ import { logoutUser } from "../services/authenService";
 export const Navbar = () => {
   const { detailOrder } = useGetListOrder();
   const { accessToken, user } = useSelector((state) => state.authenSlice);
+  console.log(user, "kcckscksnakn");
+
   const [dataOrder, setDataOrder] = useState([]);
   const [active, setActive] = useState(false);
   useEffect(() => {
@@ -100,7 +102,7 @@ export const Navbar = () => {
                 <p className="text-sm text-gray-500">Xin chào</p>
                 <p className="text-lg font-semibold text-gray-800 mt-1">{user?.name}</p>
               </div>
-              <Link to={`/profile/${user?.user?._id}`} className="flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-gray-100 px-2 py-2 rounded-md transition">
+              <Link to={`/profile/${user?._id}`} className="flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-gray-100 px-2 py-2 rounded-md transition">
                 <PersonIcon fontSize="small" />
                 <span className="text-sm">Profile</span>
               </Link>
