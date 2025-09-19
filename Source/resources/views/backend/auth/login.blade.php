@@ -6,13 +6,12 @@
     <title>INSPINIA | Login</title>
 
     {{-- CSS Stylesheets --}}
-    <link href="backend/css/bootstrap.min.css" rel="stylesheet">
-    <link href="backend/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="backend/css/animate.css" rel="stylesheet">
-    <link href="backend/css/style.css" rel="stylesheet">
-    <link href="backend/css/customize.css" rel="stylesheet">
-</head>
-
+    <link href="{{ asset('backend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('backend/css/customize.css') }}" rel="stylesheet">
+    </head>
 <body class="gray-bg">
     {{-- Login Container --}}
     <div class="middle-box text-center loginscreen animated fadeInDown">
@@ -83,7 +82,7 @@
     </div>
 
     {{-- JavaScript Files --}}
-    <script src="js/jquery-3.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
 </html>
