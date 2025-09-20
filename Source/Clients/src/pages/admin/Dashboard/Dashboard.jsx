@@ -16,6 +16,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useGetListUser from "../../../hooks/useGetListUser";
+import { formatBigNumber } from "../../../libs/format-big-number";
 export const Dashboard = () => {
     const { listUser, handleListUser } = useGetListUser();
     console.log(listUser, "uerrrr");
@@ -57,7 +58,7 @@ export const Dashboard = () => {
                         <p className="text-lg font-medium">Doanh thu</p>
                         <div className="flex items-center gap-2 mt-4">
                             <AttachMoneyIcon fontSize="large" />
-                            <span className="text-2xl font-bold">{totalRevenue}</span>
+                            <span className="text-2xl font-bold">{formatBigNumber(totalRevenue)}</span>
                         </div>
                     </li>
                     <li className="bg-gradient-to-r from-purple-500 to-purple-700 text-white rounded-xl p-6 shadow-lg flex flex-col justify-between">
