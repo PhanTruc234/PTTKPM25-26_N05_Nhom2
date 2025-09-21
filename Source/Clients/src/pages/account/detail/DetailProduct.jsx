@@ -23,16 +23,21 @@ import { useDispatch } from "react-redux";
 // import { setCart } from "../../../store/features/cart/cartSlice";
 import { updateProductAmount } from "../../../services/productService";
 import { getImageUrl } from "../../../libs/img";
+import { cap } from "../../../libs/cap";
+import { blue } from "@mui/material/colors";
 export const DetailProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
+  const [attribute, setAttribute] = useState({})
   const productId = searchParams.get("id");
   const { detailProduct } = useGetDetailProduct(productId);
   const { handleAddToCart } = useAddToCart();
   const { productsByCategory } = useGetProductByCategory(
     detailProduct?.categoryId._id
   );
+  console.log(attribute, "attributeattributeattribute");
+  console.log(detailProduct, "detailProductdetailProduct");
   const [selectedImg, setSelectedImg] = useState("");
   const handleChangeImg = (url) => {
     setSelectedImg(url);
@@ -46,7 +51,8 @@ export const DetailProduct = () => {
   }
   const handleAddToCartWithUpdate = async () => {
     try {
-      await handleAddToCart(productId, quantity, detailProduct.name);
+      await handleAddToCart(productId, quantity, detailProduct.name, attribute.Color
+        , attribute.Size);
       await handleUpdateAmount();
     } catch (error) {
       console.error(error);
@@ -125,7 +131,6 @@ export const DetailProduct = () => {
           <p className="mt-3 text-xl font-semibold">
             {formatBigNumber(detailProduct.price, true)}
           </p>
-
           <div className="mt-2 pt-2 border-t border-gray">
             <p className="flex items-center gap-2 mt-4">
               <span className="font-medium text-sm">Danh mục:</span>
@@ -137,11 +142,28 @@ export const DetailProduct = () => {
               <img className="w-5 block animate-flicker" src={ico_eye} alt="" />
               <span className="font-medium text-sm">35 Đang xem</span>
             </p>
-
             <p className="flex items-center gap-2 mt-6">
               <img className="w-5 block" src={ico_checked} alt="" />{" "}
-              <span className="text-green font-medium text-sm">Còn hàng</span>
+              <span className="text-green font-medium text-sm">{detailProduct.amount > 0 ? "Còn hàng" : "Hết hàng"}</span>
             </p>
+            <div>
+              {Object.entries(detailProduct?.attributes
+              ).map(([key, val]) => (
+                <div key={key}>
+                  <span className="font-medium">{cap(key)}:</span>
+                  <div className="flex items-center gap-3">
+                    {val.map((ele) => (
+                      <div className={`border border-black w-[50px] h-[50px] rounded-sm cursor-pointer flex items-center justify-center ${attribute[key] === ele ? "bg-blue-500" : ""}`} key={ele} onClick={() => setAttribute((prev) => ({
+                        ...prev,
+                        [cap(key)]: ele,
+                      }))}>
+                        {cap(ele)}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
             <div className="mt-6 flex items-center gap-3">
               <div className="flex items-center w-max relative">
                 <button

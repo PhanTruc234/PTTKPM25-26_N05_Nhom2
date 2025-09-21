@@ -1,5 +1,5 @@
 // src/order/dto/create-order-item.dto.ts
-import { IsMongoId, IsNumber, Min } from 'class-validator';
+import { IsMongoId, IsNumber, IsOptional, IsString, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateOrderItemDto {
@@ -15,4 +15,14 @@ export class CreateOrderItemDto {
   @ApiProperty({ example: 50000 })
   @IsNumber()
   price: number;
+
+  @ApiProperty({ example: 'đen' })
+  @IsString()
+  @IsOptional()
+  color?: string;
+
+  @ApiProperty({ example: 'M' })
+  @IsString()
+  @IsOptional()
+  size?: string;
 }

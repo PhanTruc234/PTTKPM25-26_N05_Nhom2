@@ -13,16 +13,16 @@ export default function PaymentReturn() {
     if (!search) return;
     const params = new URLSearchParams(search);
     const responseCode = params.get("vnp_ResponseCode");
-     console.log(responseCode);
+    console.log(responseCode);
     // Gọi về BE để verify chữ ký & update order
     axios
       .get(`http://localhost:3100/payment/check-payment-vnpay?${search}`)
       .then((res) => {
         if (responseCode === "00" && res.data?.success) {
-            console.log(res,"édssvdvdv");
-            navigate("/shopping-cart");
-            toast.success("Thanh toán thành công");
-        } 
+          console.log(res, "édssvdvdv");
+          navigate("/shopping-cart");
+          toast.success("Thanh toán thành công");
+        }
       })
       .catch(() => {
         toast.error("Không xác nhận được thanh toán");

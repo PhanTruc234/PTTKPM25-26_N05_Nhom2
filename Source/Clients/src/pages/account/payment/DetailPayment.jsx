@@ -18,9 +18,6 @@ export const DetailPayment = () => {
     limit: 10,
     page: 1,
   });
-  console.log(detailOrder, "KKKKKKK");
-
-  // const cartItem = useSelector((state) => state.cartSlice.items);
   const user = useSelector((state) => state.authenSlice);
   const [dataOrder, setDataOrder] = useState([]);
   useEffect(() => {
@@ -33,13 +30,9 @@ export const DetailPayment = () => {
       .filter((order) => order?.userId?._id === user.user._id)
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   }, [dataOrder, user.user._id]);
-  console.log(userOrders, "userOrders");
   const totalPrice = userOrders[0]?.totalPrice;
   const status = userOrders[0]?.status;
   const handleCancleOrder = async (id, value, productid, amount, quantity) => {
-    console.log(productid);
-    console.log(amount);
-    console.log(quantity);
     try {
       await updatePaymentStatus(id, value);
       await updateProductAmount(productid, amount + quantity)
@@ -53,7 +46,6 @@ export const DetailPayment = () => {
       <div className="pt-10 container mx-auto">
         {userOrders.length > 0 && userOrders[0]?.status !== "CANCELLED" && (
           <div className="flex items-center justify-between max-w-4xl mx-auto mb-10">
-            {/* Step 1 */}
             <div className="flex items-center flex-1">
               <div className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-green-500">
                 <ReceiptIcon className="text-green-500" style={{ fontSize: 24 }} />
@@ -62,8 +54,6 @@ export const DetailPayment = () => {
                 className={`flex-1 h-1 ${["PROCESSING", "SHIPPING", "COMPLETED"].includes(status) ? "bg-green-500" : "bg-gray-300"}`}
               ></div>
             </div>
-
-            {/* Step 2 */}
             <div className="flex items-center flex-1">
               <div className={`flex items-center justify-center w-12 h-12 rounded-full border-2 ${["PROCESSING", "SHIPPING", "COMPLETED"].includes(status) ? "border-green-500" : "border-gray-400"}`}>
                 <AttachMoneyIcon
@@ -74,8 +64,6 @@ export const DetailPayment = () => {
                 className={`flex-1 h-1 ${["SHIPPING", "COMPLETED"].includes(status) ? "bg-green-500" : "bg-gray-300"}`}
               ></div>
             </div>
-
-            {/* Step 3 */}
             <div className="flex items-center flex-1">
               <div className={`flex items-center justify-center w-12 h-12 rounded-full border-2 ${["SHIPPING", "COMPLETED"].includes(status) ? "border-green-500" : "border-gray-400"}`}>
                 <LocalShippingIcon
@@ -125,11 +113,21 @@ export const DetailPayment = () => {
                     alt={ele.productId.name}
                     className="w-20 h-20 object-cover rounded"
                   />
-                  <div>
-                    <p className="font-medium">{ele.productId.name}</p>
-                    <p className="text-sm text-gray-500">
+                  <div className="p-3  rounded-2xl shadow-sm bg-white">
+                    <p className="font-semibold text-lg text-gray-800">{ele.productId.name}</p>
+                    <p className="text-base text-emerald-600 font-medium mt-1">
                       {formatBigNumber(ele.price, true)}
                     </p>
+                    <div className="flex items-center gap-4 mt-2 text-sm text-gray-600">
+                      <span className="flex items-center gap-1">
+                        <span className="font-medium">Color:</span>
+                        <span>{ele.color || "-"}</span>
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <span className="font-medium">Size:</span>
+                        <span>{ele.size || "-"}</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
                 <div className="p-4 text-center">{ele.amount}</div>

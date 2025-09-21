@@ -8,18 +8,20 @@ export const useAddToCart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.authenSlice);
-  
+
   const handleAddToCart = async (
     productId,
     quantity,
-    name
+    name,
+    color,
+    size,
   ) => {
     if (!user) {
       navigate("/login");
       return;
     }
     try {
-      const res = await addCart(productId, quantity);
+      const res = await addCart(productId, quantity, color, size);
       console.log(res, "ressssssssssCart");
       if (res.status === 201) {
         dispatch(setCart(res.data.items));

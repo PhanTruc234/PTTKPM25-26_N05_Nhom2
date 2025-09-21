@@ -86,7 +86,18 @@ export const ShoppingCart = () => {
                         <div>
                           <p className="text-xs uppercase">{product.productId.name}</p>
                           <span className="text-xs">{formatBigNumber(product.productId.price, true)}</span>
+                          <div className="mt-2 flex gap-4 text-xs">
+                            <div className="flex items-center gap-1">
+                              <span className="font-medium">Color:</span>
+                              <span className="text-gray-700">{product.color}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <span className="font-medium">Size:</span>
+                              <span className="text-gray-700">{product.size}</span>
+                            </div>
+                          </div>
                         </div>
+
                       </div>
                     </div>
 

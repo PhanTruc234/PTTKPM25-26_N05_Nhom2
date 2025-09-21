@@ -45,6 +45,7 @@ export const DialogCategory = ({
   };
   const handleClose = () => {
     onClose();
+    onSuccess();
     setFormCategory({
       name: "",
       description: "",
@@ -94,7 +95,7 @@ export const DialogCategory = ({
   return (
     <React.Fragment>
       <BootstrapDialog
-        onClose={handleClose}
+        onClick={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >

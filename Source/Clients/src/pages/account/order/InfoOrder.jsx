@@ -21,6 +21,7 @@ export const InfoOrder = ({ value }) => {
     userId: user.user._id,
     status: value || "",
   });
+  console.log(detailOrder, "detailOrderdetailOrder");
   const handleChangePage = (value) => {
     dispatch({
       type: UPDATE_FILTER_ACTION_ORDER.CHANGE_PAGE,
@@ -43,6 +44,7 @@ export const InfoOrder = ({ value }) => {
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }, [detailOrder?.data?.data]);
+  console.log(userOrders, "userOrdersuserOrdersuserOrders");
   //   const totalPrice = userOrders[0]?.totalPrice;
   // console.log(userOrders, "userOrdersuserOrders");
   const handleCancleOrder = async (id, value) => {
@@ -123,6 +125,7 @@ export const InfoOrder = ({ value }) => {
           <tbody className="divide-y divide-gray-100">
             {userOrders?.map(info =>
               info.items.map(ele => (
+                ele.productId &&
                 <tr key={ele._id} className="hover:bg-gray-50 transition duration-150">
                   <td className="px-6 py-3 flex items-center gap-4">
                     <div className="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden shadow-sm">

@@ -1,3 +1,4 @@
+import { Prop } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsInt, Min } from 'class-validator';
 
@@ -10,4 +11,12 @@ export class AddToCartDto {
   @IsInt()
   @Min(1)
   quantity: number;
+
+  @ApiProperty({ example: 'đen' })
+  @IsString()
+  color: string;
+
+  @ApiProperty({ example: 'M' })
+  @IsString()
+  size: string;
 }

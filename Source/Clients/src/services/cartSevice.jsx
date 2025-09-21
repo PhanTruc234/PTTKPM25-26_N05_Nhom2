@@ -7,10 +7,12 @@ import {
 } from "../contants/apis";
 import axiosClient from "./axiosClient";
 
-export const addCart = async (productId, quantity = 1) => {
+export const addCart = async (productId, quantity = 1, color, size) => {
   return await axiosClient.post(API_ADD_CART, {
     productId,
     quantity,
+    color,
+    size
   });
 };
 export const updateCart = async (productId, quantity) => {

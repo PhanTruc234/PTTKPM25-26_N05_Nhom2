@@ -9,7 +9,6 @@ import { Order, OrderDocument, OrderStatus } from './schema/order.schema';
 @Injectable()
 export class OrderService {
   constructor(@InjectModel(Order.name) private orderModel: Model<OrderDocument>) { }
-
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
     const totalPrice = createOrderDto.items.reduce((sum, item) => sum + item.price * item.amount, 0);
     const paymentStatus =
@@ -20,10 +19,12 @@ export class OrderService {
         productId: new Types.ObjectId(item.productId),
         amount: item.amount,
         price: item.price,
+        color: item.color,
+        size: item.size,
       })),
       totalPrice,
       status: OrderStatus.PENDING,
-      paymentStatus
+      paymentStatus,
     });
     return createdOrder.save();
   }

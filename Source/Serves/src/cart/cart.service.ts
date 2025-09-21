@@ -18,7 +18,6 @@ export class CartService {
     if (!Types.ObjectId.isValid(userId)) {
       throw new BadRequestException('Invalid user ID');
     }
-
     let cart = await this.cartModel
       .findOne({ userId })
       .populate('items.productId')
@@ -33,7 +32,7 @@ export class CartService {
   }
 
   async addItem(userId: string, dto: AddToCartDto): Promise<Cart> {
-    const { productId, quantity } = dto;
+    const { productId, quantity, color, size } = dto;
     console.log('userId:', userId);
     console.log('productId:', productId);
     if (!Types.ObjectId.isValid(userId) || !Types.ObjectId.isValid(productId))
@@ -45,13 +44,21 @@ export class CartService {
     }
 
     const existingItem = cart.items.find(
-      (item) => item.productId.toString() === productId,
+      (item) =>
+        item.productId.toString() === productId &&
+        item.color === color &&
+        item.size === size,
     );
 
     if (existingItem) {
       existingItem.quantity += quantity;
     } else {
-      cart.items.push({ productId: new Types.ObjectId(productId), quantity });
+      cart.items.push({
+        productId: new Types.ObjectId(productId),
+        quantity,
+        color,
+        size,
+      });
     }
 
     await cart.save();
@@ -71,12 +78,17 @@ export class CartService {
     return cart.populate('items.productId');
   }
 
-  async removeItem(userId: string, productId: string): Promise<Cart> {
+  async removeItem(userId: string, productId: string, color?: string, size?: string): Promise<Cart> {
     const cart = await this.cartModel.findOne({ userId }).exec();
     if (!cart) throw new NotFoundException('Cart not found');
 
     cart.items = cart.items.filter(
-      (item) => item.productId.toString() !== productId,
+      (item) =>
+        !(
+          item.productId.toString() === productId &&
+          item.color === color &&
+          item.size === size
+        ),
     );
 
     await cart.save();

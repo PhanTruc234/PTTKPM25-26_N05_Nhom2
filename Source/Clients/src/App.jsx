@@ -1,4 +1,4 @@
-import { Routes } from "react-router-dom";
+import { Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import { AccountRoutes } from "./routes/AccountRoutes";
 import { AdminRoutes } from "./routes/AdminRoutes";
@@ -10,6 +10,7 @@ import { getCarts } from "./services/cartSevice";
 
 function App() {
   const { accessToken } = useSelector((state) => state.authenSlice);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     if (accessToken) {
@@ -22,6 +23,7 @@ function App() {
       fetchDataListCarts();
     } else {
       dispatch(setCart([]));
+      navigate("/");
     }
   }, [accessToken]);
   return (

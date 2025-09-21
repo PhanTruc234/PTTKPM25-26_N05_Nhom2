@@ -18,8 +18,6 @@ import { logoutUser } from "../services/authenService";
 export const Navbar = () => {
   const { detailOrder } = useGetListOrder();
   const { accessToken, user } = useSelector((state) => state.authenSlice);
-  console.log(user, "kcckscksnakn");
-
   const [dataOrder, setDataOrder] = useState([]);
   const [active, setActive] = useState(false);
   useEffect(() => {

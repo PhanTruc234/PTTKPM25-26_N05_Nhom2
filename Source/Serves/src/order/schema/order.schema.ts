@@ -11,8 +11,9 @@ export enum OrderStatus {
   COMPLETED = 'COMPLETED',
   CANCELLED = 'CANCELLED',
 }
+
 @Schema()
-class OrderItem {
+export class OrderItem {
   @Prop({ type: Types.ObjectId, ref: 'Product', required: true })
   productId: Types.ObjectId;
 
@@ -21,9 +22,15 @@ class OrderItem {
 
   @Prop({ required: true })
   price: number;
+
+  @Prop()
+  color?: string;
+
+  @Prop()
+  size?: string;
 }
 
-const OrderItemSchema = SchemaFactory.createForClass(OrderItem);
+export const OrderItemSchema = SchemaFactory.createForClass(OrderItem);
 
 @Schema({ timestamps: true })
 export class Order {
@@ -44,6 +51,7 @@ export class Order {
 
   @Prop()
   phone: string;
+
   @Prop({ required: true, enum: ['cod', 'online'] })
   paymentMethod: string;
 

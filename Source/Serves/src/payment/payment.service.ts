@@ -5,14 +5,14 @@ import { Order, OrderDocument, OrderStatus } from 'src/order/schema/order.schema
 import { VNPay, ignoreLogger, ProductCode, VnpLocale, dateFormat } from 'vnpay';
 @Injectable()
 export class PaymentService {
-    private vnPay: VNPay;
+  private vnPay: VNPay;
   constructor(@InjectModel(Order.name) private orderModel: Model<OrderDocument>) {
     this.vnPay = new VNPay({
       tmnCode: "NPBLG5M3",
       secureSecret: "L9FNNT7FA3PGSRB63YFWPVE6B0BLAU7T",
       vnpayHost: "https://sandbox.vnpayment.vn",
       testMode: true,
-    //   hashAlgorithm : 'SHA512' as HashAlgorithm,
+      //   hashAlgorithm : 'SHA512' as HashAlgorithm,
       loggerFn: ignoreLogger,
     });
   }
@@ -23,7 +23,7 @@ export class PaymentService {
     if (order.paymentMethod !== 'online') throw new Error('Order không dùng thanh toán online');
     const txnRef = order._id.toString();
     const vnpayResponse = await this.vnPay.buildPaymentUrl({
-      vnp_Amount: order.totalPrice, 
+      vnp_Amount: order.totalPrice,
       vnp_IpAddr: ipAddr,
       vnp_TxnRef: txnRef,
       vnp_OrderInfo: `Thanh toán đơn hàng ${txnRef}`,
@@ -42,9 +42,8 @@ export class PaymentService {
     const txnRef = query.vnp_TxnRef;
     const vnp_ResponseCode = query.vnp_ResponseCode;
 
-    const order = await this.orderModel.findById(txnRef);
+    const order = await this.orderModel.findById(txnRef); // để tìm trong db
     if (!order) throw new NotFoundException(`Order ${txnRef} not found`);
-
     if (vnp_ResponseCode === '00') {
       order.paymentStatus = 'paid';
       order.status = OrderStatus.PROCESSING;

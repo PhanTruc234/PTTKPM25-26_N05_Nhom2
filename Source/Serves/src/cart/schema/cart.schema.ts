@@ -9,6 +9,12 @@ export class CartItem {
 
   @Prop({ required: true })
   quantity: number;
+
+  @Prop({ required: true })
+  color: string;
+
+  @Prop({ required: true })
+  size: string;
 }
 
 @Schema({ timestamps: true })
