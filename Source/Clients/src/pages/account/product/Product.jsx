@@ -28,8 +28,6 @@ export const Product = () => {
   const [filterProductByCate, setFilterProductByCate] = useState("");
   const { data } = useGetListProducts(state);
   const [check, setCheck] = useState(false)
-  console.log(data, "dâttatatata");
-
   const { data: cateData } = useGetListCategory({
     page: 1,
     limit: 10,
@@ -49,6 +47,7 @@ export const Product = () => {
   };
   const handleReset = () => {
     setSearch("");
+    setCheck(false);
     setFilterProductByCate("")
     dispatch({
       type: UPDATE_FILTER_ACTION_PRODUCT.REMOVE_QUERY,
@@ -102,6 +101,17 @@ export const Product = () => {
       });
     }
   }, []);
+  const handleCheckBox = () => {
+    if (!check) {
+      delete state.sale
+    } else {
+      state.sale = check;
+    }
+    dispatch({
+      type: UPDATE_FILTER_ACTION_PRODUCT.CHANGE_SALE,
+      payload: state,
+    });
+  }
   useEffect(() => {
     if (state) {
       if (!state.name) {
@@ -115,14 +125,6 @@ export const Product = () => {
       setSearchParams(new URLSearchParams(dataFilterJson));
     }
   }, [state]);
-  const handleCheckBox = () => {
-    dispatch({
-      type: UPDATE_FILTER_ACTION_PRODUCT.CHANGE_SALE,
-      payload: {
-        sale: check
-      }
-    })
-  }
   const handleFillter = () => {
     handleChangeSelect();
     handleSearch();
