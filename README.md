@@ -43,12 +43,13 @@
 
 ## 🛠️ Công Nghệ Sử Dụng
 
-| Công nghệ           | Vai trò chính                           |
-|---------------------|-----------------------------------------|
-| **ReactJS**         | Frontend: giao diện người dùng,component|
-| **NestJS**          | Backend: xử lý API, business logic      |
-| **Tailwind CSS**    | Giao diện frontend nhẹ, đẹp             |
-| **MongoDB**         | Cơ sở dữ liệu chính                     |
+| Công nghệ           | Vai trò chính                              |
+|---------------------|--------------------------------------------|
+| **ReactJS**         | Frontend: giao diện người dùng,component   |
+| **NestJS**          | Backend: xây dựng API, business logic      |
+| **Tailwind CSS**    | Giao diện frontend nhẹ, đẹp                |
+| **MongoDB**         | Cơ sở dữ liệu chính                        |
+
 
 
 
