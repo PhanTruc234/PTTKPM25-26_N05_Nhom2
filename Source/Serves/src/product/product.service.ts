@@ -6,6 +6,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { Product, ProductDocument, ProductSchema } from './schema/product.schema';
 import { DatabaseConnection } from 'src/common/database/database-connection';
 import { CategorySchema } from 'src/category/schema/category.schema';
+import { ProductFactory } from './product.factory';
 
 interface ProductQuery {
   name?: string;
@@ -43,13 +44,8 @@ export class ProductService {
     this.productModel = connection.model<Product>('Product', ProductSchema);
   }
   async create(createProductDto: CreateProductDto): Promise<Product> {
-    const newProduct = new this.productModel({
-      ...createProductDto,
-      categoryId: new Types.ObjectId(createProductDto.categoryId),
-      amount: createProductDto.amount ?? 0,
-      attributes: createProductDto.attributes,
-    });
-
+    const newProductData = ProductFactory.create(createProductDto);
+    const newProduct = new this.productModel(newProductData);
     return newProduct.save();
   }
   async findAll(query: ProductQuery): Promise<{

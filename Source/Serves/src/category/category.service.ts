@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { Category, CategoryDocument, CategorySchema } from './schema/category.schema';
 import { DatabaseConnection } from 'src/common/database/database-connection';
+import { CategoryFactory } from './category.factory';
 
 @Injectable()
 export class CategoryService {
@@ -16,7 +17,8 @@ export class CategoryService {
     this.categoryModel = connection.model<CategoryDocument>('Category');
   }
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
-    const createdCategory = new this.categoryModel(createCategoryDto);
+    const newCategoryData = CategoryFactory.create(createCategoryDto);
+    const createdCategory = new this.categoryModel(newCategoryData);
     return createdCategory.save();
   }
 
