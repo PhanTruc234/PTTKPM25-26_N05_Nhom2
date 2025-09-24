@@ -3,14 +3,18 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateCategoryDto } from './dto/create-category.dto';
-import { Category, CategoryDocument } from './schema/category.schema';
+import { Category, CategoryDocument, CategorySchema } from './schema/category.schema';
+import { DatabaseConnection } from 'src/common/database/database-connection';
 
 @Injectable()
 export class CategoryService {
-  constructor(
-    @InjectModel(Category.name) private categoryModel: Model<CategoryDocument>,
-  ) { }
-
+  private categoryModel: Model<CategoryDocument>;
+  constructor() {
+    const db = DatabaseConnection.getInstance();
+    const connection = db.getConnection();
+    if (!connection.models['Category']) connection.model('Category', CategorySchema);
+    this.categoryModel = connection.model<CategoryDocument>('Category');
+  }
   async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
     const createdCategory = new this.categoryModel(createCategoryDto);
     return createdCategory.save();

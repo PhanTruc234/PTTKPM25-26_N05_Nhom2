@@ -1,19 +1,25 @@
 // src/auth/auth.service.ts
 import { Injectable, UnauthorizedException, ForbiddenException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Role, User, UserDocument } from '../user/schemas/user.schema';
+import { Role, User, UserDocument, UserSchema } from '../user/schemas/user.schema';
 import { Model } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
+import { DatabaseConnection } from 'src/common/database/database-connection';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    @InjectModel(User.name) private userModel: Model<UserDocument>,
-    private jwtService: JwtService,
-  ) { }
+  private userModel: Model<UserDocument>;
+  constructor(private jwtService: JwtService) {
+    const db = DatabaseConnection.getInstance();
+    const connection = db.getConnection();
+    if (!connection.models['User']) {
+      connection.model('User', UserSchema);
+    }
+    this.userModel = connection.model<UserDocument>('User');
+  }
 
   async register(dto: RegisterDto): Promise<User> {
     const existing = await this.userModel.findOne({ email: dto.email }); // Kiểm tra email đã tồn tại chưa.

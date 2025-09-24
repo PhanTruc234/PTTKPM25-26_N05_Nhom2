@@ -6,14 +6,22 @@ import {
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
-import { Cart, CartDocument } from './schema/cart.schema';
+import { Cart, CartDocument, CartSchema } from './schema/cart.schema';
 import { AddToCartDto } from './dto/add-to-cart.dto';
 import { UpdateCartItemDto } from './dto/update-cart-item.dto';
+import { DatabaseConnection } from 'src/common/database/database-connection';
 
 @Injectable()
 export class CartService {
-  constructor(@InjectModel(Cart.name) private cartModel: Model<CartDocument>) { }
-
+  private cartModel: Model<CartDocument>;
+  constructor() {
+    const db = DatabaseConnection.getInstance();
+    const connection = db.getConnection();
+    if (!connection.models['Cart']) {
+      connection.model('Cart', CartSchema);
+    }
+    this.cartModel = connection.model<CartDocument>('Cart');
+  }
   async getCartByUserId(userId: string): Promise<Cart> {
     if (!Types.ObjectId.isValid(userId)) {
       throw new BadRequestException('Invalid user ID');

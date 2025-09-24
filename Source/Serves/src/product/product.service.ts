@@ -1,9 +1,11 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Connection, Model, Types } from 'mongoose';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { Product, ProductDocument } from './schema/product.schema';
+import { Product, ProductDocument, ProductSchema } from './schema/product.schema';
+import { DatabaseConnection } from 'src/common/database/database-connection';
+import { CategorySchema } from 'src/category/schema/category.schema';
 
 interface ProductQuery {
   name?: string;
@@ -32,10 +34,14 @@ interface PaginationOptions {
 
 @Injectable()
 export class ProductService {
-  constructor(
-    @InjectModel(Product.name)
-    private readonly productModel: Model<ProductDocument>,
-  ) { }
+  private productModel: Model<Product>;
+  constructor() {
+    const db: DatabaseConnection = DatabaseConnection.getInstance();
+    const connection: Connection = db.getConnection();
+    if (!connection.models['Category']) connection.model('Category', CategorySchema);
+    if (!connection.models['Product']) connection.model('Product', ProductSchema);
+    this.productModel = connection.model<Product>('Product', ProductSchema);
+  }
   async create(createProductDto: CreateProductDto): Promise<Product> {
     const newProduct = new this.productModel({
       ...createProductDto,

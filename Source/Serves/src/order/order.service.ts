@@ -5,30 +5,16 @@ import { Model, Types } from 'mongoose';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order, OrderDocument, OrderStatus } from './schema/order.schema';
+import { OrderFactory } from './order.factory';
 
 @Injectable()
 export class OrderService {
   constructor(@InjectModel(Order.name) private orderModel: Model<OrderDocument>) { }
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
-    const totalPrice = createOrderDto.items.reduce((sum, item) => sum + item.price * item.amount, 0);
-    const paymentStatus =
-      createOrderDto.paymentMethod === 'cod' ? 'unpaid' : 'unpaid';
-    const createdOrder = new this.orderModel({
-      ...createOrderDto,
-      items: createOrderDto.items.map(item => ({
-        productId: new Types.ObjectId(item.productId),
-        amount: item.amount,
-        price: item.price,
-        color: item.color,
-        size: item.size,
-      })),
-      totalPrice,
-      status: OrderStatus.PENDING,
-      paymentStatus,
-    });
+    const orderData = OrderFactory.create(createOrderDto);
+    const createdOrder = new this.orderModel(orderData);
     return createdOrder.save();
   }
-
   async findAll(
     page = 1,
     limit = 10,

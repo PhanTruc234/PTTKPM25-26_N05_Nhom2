@@ -5,12 +5,15 @@ import { ValidationPipe } from '@nestjs/common';
 import { setupSwagger } from './swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import { DatabaseConnection } from './common/database/database-connection';
 
 dotenv.config();
 
 async function bootstrap() {
-    const app = await NestFactory.create<NestExpressApplication>(AppModule);
-app.enableCors({
+  const db = DatabaseConnection.getInstance();
+  await db.connect(process.env.MONGO_URI!);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+ app.enableCors({
   origin: 'http://localhost:5173',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   credentials: true,
