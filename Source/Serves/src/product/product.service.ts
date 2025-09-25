@@ -55,31 +55,21 @@ export class ProductService {
     limit: number;
   }> {
     const filter: any = {};
-
-    // 🔍 Filter theo tên
     if (query.name) {
       filter.name = { $regex: query.name, $options: 'i' };
     }
-
-    // 🔍 Filter theo khoảng giá
     if (query.minPrice || query.maxPrice) {
       filter.price = {};
       if (query.minPrice !== undefined) filter.price.$gte = query.minPrice;
       if (query.maxPrice !== undefined) filter.price.$lte = query.maxPrice;
     }
-
-    // 🔍 Filter theo danh mục
     if (query.category) {
       filter.categoryId = new Types.ObjectId(query.category);
     }
 
-    // 🔍 Filter sản phẩm đang giảm giá
-
     if (query.sale && query.sale.toLowerCase() === 'true') {
       filter.salePercent = { $gt: 0 };
     }
-
-
     const page = query.page && +query.page > 0 ? +query.page : 1;
     const limit = query.limit && +query.limit > 0 ? +query.limit : 10;
     const skip = (page - 1) * limit;
