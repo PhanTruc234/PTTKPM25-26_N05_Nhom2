@@ -8,6 +8,8 @@ import { OrderModule } from './order/order.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PaymentModule } from './payment/payment.module';
+import { UserSeeder } from './user/user.seed';
+import { OrderSeeder } from './order/order.seed';
 
 
 @Module({
@@ -27,6 +29,10 @@ import { PaymentModule } from './payment/payment.module';
     AuthModule,
     UserModule,
     PaymentModule,
+  ],
+  providers: [
+    UserSeeder,
+    OrderSeeder,
   ],
 })
 export class AppModule { }

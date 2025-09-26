@@ -13,7 +13,6 @@ export const Profile = () => {
       <h2 className="mb-8 text-2xl font-semibold text-gray-800 text-center lg:text-left">
         Trang cá nhân
       </h2>
-
       <div className="flex flex-col lg:flex-row gap-6 lg:items-start">
         <div className="w-full lg:w-[280px] rounded-xl border border-gray-200 bg-white shadow-md p-6 flex-shrink-0">
           <div className="text-center mb-6">
