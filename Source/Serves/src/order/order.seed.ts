@@ -29,8 +29,7 @@ export class OrderSeeder {
             return console.log('Chưa có sản phẩm để tạo đơn hàng');
         }
         const orders: any[] = [];
-        const normalUsers = users.filter(u => !u.email.endsWith('@gmail.com'));
-
+        const normalUsers = users.filter(u => u?.email.split("@")[1] !== "gmail.com");
         if (!normalUsers.length) {
             return console.log('Không có user hợp lệ để tạo đơn hàng');
         }
