@@ -41,15 +41,6 @@ export const InfoOrder = ({ value }) => {
       console.log(error);
     }
   };
-  let userOrders = useMemo(() => {
-    return detailOrder?.data?.data?.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }, [detailOrder?.data?.data]);
-
-  //   const totalPrice = userOrders[0]?.totalPrice;
-  // console.log(userOrders, "userOrdersuserOrders");
   const handleCancleOrder = async (id, value) => {
     try {
       const res = await updatePaymentStatus(id, value);
@@ -114,8 +105,12 @@ export const InfoOrder = ({ value }) => {
       handleOrderByUser()
     }
   }, [user])
-  console.log(data);
-  const ordersToRender = data.length > 0 ? data : userOrders;
+  const userOrders = data.length > 0 ? data : useMemo(() => {
+    return detailOrder?.data?.data?.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+  }, [detailOrder?.data?.data]);
   return (
     <div className="">
       <div className="container flex gap-7 mb-10">
@@ -139,7 +134,7 @@ export const InfoOrder = ({ value }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {ordersToRender?.map(info =>
+            {userOrders?.map(info =>
               info.items.map(ele => (
                 ele.productId &&
                 <tr key={ele._id} className="hover:bg-gray-50 transition duration-150">
@@ -191,7 +186,7 @@ export const InfoOrder = ({ value }) => {
         </table>
       </div>
       <div className="flex flex-col gap-4 lg:hidden px-2">
-        {ordersToRender?.map(info =>
+        {userOrders?.map(info =>
           info.items.map(ele => (
             <div key={ele._id} className="bg-white rounded-xl shadow-md p-4 flex flex-col gap-3 border border-gray-100">
               <div className="flex items-start gap-4">
