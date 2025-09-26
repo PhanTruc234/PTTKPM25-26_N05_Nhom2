@@ -10,9 +10,10 @@ export class UserSeeder {
     async seed() {
         const users: CreateUserDto[] = [];
 
-        for (let i = 0; i < 200; i++) {
+        for (let i = 0; i < 50; i++) {
+            const randomNum = Math.floor(Math.random() * 1000000);
             users.push({
-                email: `user${i}@gmail.com`,
+                email: `user${Date.now()}_${randomNum}@gmail.com`,
                 password: '123456',
                 name: `User ${i}`,
                 phone: `0987${Math.floor(100000 + Math.random() * 899999)}`,

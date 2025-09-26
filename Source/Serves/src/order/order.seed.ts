@@ -21,7 +21,7 @@ export class OrderSeeder {
 
         const orders: any[] = []; // dùng any để tránh lỗi createdAt
 
-        for (let i = 0; i < 500; i++) {
+        for (let i = 0; i < 100; i++) {
             const user = users[Math.floor(Math.random() * users.length)];
             const numItems = Math.floor(Math.random() * 5) + 1;
 

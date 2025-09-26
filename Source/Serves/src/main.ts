@@ -40,7 +40,7 @@ async function bootstrap() {
   if (process.env.SEED === 'true') {
     const userService = app.get(UserService);
     const count = await userService['userModel'].countDocuments();
-    if (count < 200) {
+    if (count < 1000) {
       const seeder = app.get(UserSeeder);
       await seeder.seed();
       console.log('Seeded 50 users successfully!');
@@ -50,7 +50,7 @@ async function bootstrap() {
   }
   const orderService = app.get(OrderService);
   const orderCount = await orderService['orderModel'].countDocuments();
-  if (orderCount < 1000) {
+  if (orderCount < 10000) {
     const orderSeeder = app.get(OrderSeeder);
     await orderSeeder.seed();
     console.log('✅ Seeded 500 orders successfully!');
