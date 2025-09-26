@@ -1,17 +1,20 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useGetListOrder from "../../../hooks/useGetListOrder";
 import { useDispatch, useSelector } from "react-redux";
 import { formatBigNumber } from "../../../libs/format-big-number";
 import { Link, useSearchParams } from "react-router-dom";
 import { Button, Pagination } from "@mui/material";
-import { getOrder, updatePaymentStatus } from "../../../services/orderService";
+import { getOrder, getOrderByUser, updatePaymentStatus } from "../../../services/orderService";
 import { toast } from "react-toastify";
 import { setOrderNew } from "../../../store/features/order/orderSlice";
 import useGetFilterOrder, { UPDATE_FILTER_ACTION_ORDER } from "../../../hooks/useGetFilterOrder";
 import { getImageUrl } from "../../../libs/img";
+import axiosClient from "../../../services/axiosClient";
+import { getDetilProduct } from "../../../services/productService";
 
 export const InfoOrder = ({ value }) => {
   const user = useSelector((state) => state.authenSlice);
+  console.log(user?.user.email.split("@"))
   const dispatch1 = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const { state, dispatch } = useGetFilterOrder();
@@ -38,13 +41,13 @@ export const InfoOrder = ({ value }) => {
       console.log(error);
     }
   };
-  const userOrders = useMemo(() => {
+  let userOrders = useMemo(() => {
     return detailOrder?.data?.data?.sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
   }, [detailOrder?.data?.data]);
-  console.log(userOrders, "userOrdersuserOrdersuserOrders");
+
   //   const totalPrice = userOrders[0]?.totalPrice;
   // console.log(userOrders, "userOrdersuserOrders");
   const handleCancleOrder = async (id, value) => {
@@ -100,6 +103,19 @@ export const InfoOrder = ({ value }) => {
       setSearchParams(new URLSearchParams(dataFilterJson));
     }
   }, [state])
+  const [data, setData] = useState([])
+  useEffect(() => {
+    if (user?.user?.email.split("@")[1] === "example.com") {
+      const handleOrderByUser = async () => {
+        const res = await getOrderByUser(user?.user?._id);
+        console.log(res, "UserBYOrdersjfsnfjdfb");
+        setData(res.data)
+      }
+      handleOrderByUser()
+    }
+  }, [user])
+  console.log(data);
+  const ordersToRender = data.length > 0 ? data : userOrders;
   return (
     <div className="">
       <div className="container flex gap-7 mb-10">
@@ -123,7 +139,7 @@ export const InfoOrder = ({ value }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {userOrders?.map(info =>
+            {ordersToRender?.map(info =>
               info.items.map(ele => (
                 ele.productId &&
                 <tr key={ele._id} className="hover:bg-gray-50 transition duration-150">
@@ -175,7 +191,7 @@ export const InfoOrder = ({ value }) => {
         </table>
       </div>
       <div className="flex flex-col gap-4 lg:hidden px-2">
-        {userOrders?.map(info =>
+        {ordersToRender?.map(info =>
           info.items.map(ele => (
             <div key={ele._id} className="bg-white rounded-xl shadow-md p-4 flex flex-col gap-3 border border-gray-100">
               <div className="flex items-start gap-4">

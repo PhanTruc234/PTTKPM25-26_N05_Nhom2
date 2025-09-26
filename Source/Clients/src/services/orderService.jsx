@@ -3,6 +3,7 @@ import {
   API_DELETE_ORDER,
   API_GET_LIST_ORDER,
   API_GET_ORDER_BY_ID,
+  API_ORDER_BY_USER,
   API_STATUS_PAYMENT,
 } from "../contants/apis";
 import axiosClient from "./axiosClient";
@@ -37,3 +38,7 @@ export const getOrder = async (id) => {
   const url = API_GET_ORDER_BY_ID.replace(":id", id);
   return await axiosClient.get(url);
 };
+export const getOrderByUser = async (id) => {
+  const url = API_ORDER_BY_USER.replace(":userId", id);
+  return await axiosClient.get(url);
+}

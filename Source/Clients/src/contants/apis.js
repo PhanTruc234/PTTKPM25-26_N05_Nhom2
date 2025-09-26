@@ -27,6 +27,7 @@ export const API_GET_LIST_ORDER = "/orders"
 export const API_STATUS_PAYMENT = "/orders/:id/status"
 export const API_DELETE_ORDER = "/orders/:id"
 export const API_GET_ORDER_BY_ID = "/orders/:id"
+export const API_ORDER_BY_USER = "/orders/user/:userId"
 
 export const API_COUNTRY = "/address-kit/2025-07-01/provinces";
 export const API_ADDREESS = "/address-kit/2025-07-01/provinces"

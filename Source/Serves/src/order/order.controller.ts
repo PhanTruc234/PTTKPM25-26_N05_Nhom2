@@ -50,4 +50,8 @@ export class OrderController {
   async getRevenue(@Param('year') year: string) {
     return this.orderService.getMonthlyRevenue(Number(year));
   }
+  @Get('user/:userId')
+  async findByUser(@Param('userId') userId: string) {
+    return this.orderService.findByUser(userId);
+  }
 }

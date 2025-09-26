@@ -6,6 +6,8 @@ import { getUser, updateUser } from '../../../services/authenService';
 
 export const ProfileInfomation = () => {
   const user = useSelector((state) => state.authenSlice);
+  console.log(user);
+
   const [form, setForm] = useState({
     name: user?.user?.name,
     email: user?.user?.email,
@@ -78,6 +80,7 @@ export const ProfileInfomation = () => {
   const handleGetUser = async () => {
     try {
       const res = await getUser(user.user._id)
+      console.log(res, "llllllllllllllllll")
       setForm((prev) => ({
         ...prev,
         name: res.data.name,

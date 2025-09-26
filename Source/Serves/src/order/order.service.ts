@@ -54,7 +54,13 @@ export class OrderService {
     if (!updated) throw new NotFoundException(`Order with ID ${id} not found`);
     return updated;
   }
-
+  async findByUser(userId: string): Promise<Order[]> {
+    return this.orderModel
+      .find({ userId: new Types.ObjectId(userId) })
+      .populate('items.productId')
+      .sort({ createdAt: -1 })
+      .exec();
+  }
   async remove(id: string): Promise<void> {
     const deleted = await this.orderModel.findByIdAndDelete(id);
     if (!deleted) throw new NotFoundException(`Order with ID ${id} not found`);
