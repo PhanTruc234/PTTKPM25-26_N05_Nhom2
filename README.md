@@ -1,4 +1,4 @@
-# 🛒 Project: Xây dựng uéng dụng bán hàng quần ápo thời trang trên website
+# 🛒 Project: Xây dựng ứng dụng bán hàng quần áo thời trang trên website
 
 ## 📚 Mục lục
 
@@ -49,6 +49,7 @@
 | **NestJS**          | Backend: xây dựng API, business logic      |
 | **Tailwind CSS**    | Giao diện frontend nhẹ, đẹp                |
 | **MongoDB**         | Cơ sở dữ liệu chính                        |
+
 
 
 
