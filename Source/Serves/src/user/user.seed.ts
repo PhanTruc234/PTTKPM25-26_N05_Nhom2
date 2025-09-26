@@ -1,31 +1,29 @@
 import { Injectable } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Role } from './schemas/user.schema';
-import { CreateUserDto } from './dto/create-user.dto';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserSeeder {
     constructor(private readonly userService: UserService) { }
 
     async seed() {
-        const users: CreateUserDto[] = [];
-
-        for (let i = 0; i < 50; i++) {
-            const randomNum = Math.floor(Math.random() * 1000000);
-            users.push({
-                email: `user${Date.now()}_${randomNum}@gmail.com`,
-                password: '123456',
+        // Tạo thêm 10 user mới với mật khẩu hash sẵn
+        for (let i = 0; i < 20; i++) {
+            const email = `user${Date.now()}_${i}@example.com`;
+            const hashedPassword = await bcrypt.hash('123456', 10);
+            await this.userService.create({
+                email,
+                password: hashedPassword,
                 name: `User ${i}`,
                 phone: `0987${Math.floor(100000 + Math.random() * 899999)}`,
                 city: 'Hà Nội',
                 ward: 'Phường Dịch Vọng',
                 address: `${i} Đường ABC`,
                 role: Role.ADMIN,
+                isActive: true,
             });
         }
-        for (const user of users) {
-            await this.userService.create(user);
-        }
-        console.log('Seeded 50 users successfully.');
+        console.log('✅ Seeded 10 users successfully with password 123456');
     }
 }
