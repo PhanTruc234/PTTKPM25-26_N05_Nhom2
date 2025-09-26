@@ -37,9 +37,7 @@ export class OrderSeeder {
         for (let i = 0; i < 50; i++) {
             const user = normalUsers[Math.floor(Math.random() * normalUsers.length)];
             const numItems = Math.floor(Math.random() * 5) + 1;
-
             const items: OrderItem[] = [];
-
             for (let j = 0; j < numItems; j++) {
                 const product = products[Math.floor(Math.random() * products.length)];
                 items.push({
@@ -60,7 +58,7 @@ export class OrderSeeder {
             orders.push({
                 userId: user._id,
                 items,
-                address: 'Hà Nội, Việt Nam',
+                address: `${user?.address || '234'} ${user?.ward || 'Phường Ô Chợ Dừa'} ${user?.city || 'Thành phố Hà Nội'}`,
                 phone: '0987' + Math.floor(100000 + Math.random() * 899999),
                 paymentMethod: 'online',
                 totalPrice,
