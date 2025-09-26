@@ -1,4 +1,4 @@
-# 🛒 Project: Hệ thống Bán hàng Trực tuyến
+# 🛒 Project: Xây dựng ứng dụng bán hàng quần áo thời trang trên website
 
 ## 📚 Mục lục
 
@@ -49,6 +49,8 @@
 | **NestJS**          | Backend: xây dựng API, business logic      |
 | **Tailwind CSS**    | Giao diện frontend nhẹ, đẹp                |
 | **MongoDB**         | Cơ sở dữ liệu chính                        |
+
+
 
 
 
