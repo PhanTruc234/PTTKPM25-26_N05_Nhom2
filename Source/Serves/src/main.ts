@@ -39,7 +39,7 @@ async function bootstrap() {
   setupSwagger(app);
   if (process.env.SEED === 'true') {
     const userService = app.get(UserService);
-    const count = await userService['userModel'].countDocuments(); // <-- dùng countDocuments()
+    const count = await userService['userModel'].countDocuments();
     if (count < 200) {
       const seeder = app.get(UserSeeder);
       await seeder.seed();
