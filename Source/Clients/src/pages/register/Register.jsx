@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import axiosClient from "../../services/axiosClient";
 import { API_REGISTER } from "../../contants/apis";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 export const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [hidden, setHidden] = useState(false);
@@ -10,20 +10,19 @@ export const Register = () => {
     name: "",
     email: "",
     password: "",
-    phone : "",
-    city : "",
-    ward : "",
+    phone: "",
+    city: "",
+    ward: "",
   });
-   const isRegister = useMemo(() => {
-      const parts = formRegister.email.split("@");
-      return parts.length === 2 && parts[1] === "gmail.com";
-    }, [formRegister.email]);
+  const isRegister = useMemo(() => {
+    const parts = formRegister.email.split("@");
+    return parts.length === 2 && parts[1] === "gmail.com";
+  }, [formRegister.email]);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormRegister({
       ...formRegister,
       [name]: value,
-
     });
   };
   const handleSubmit = async () => {
@@ -31,7 +30,7 @@ export const Register = () => {
       const res = await axiosClient.post(API_REGISTER, formRegister);
       console.log(res, "resRegister");
     } catch (error) {
-      setErrorMessage(error)
+      setErrorMessage(error);
     }
   };
   return (
@@ -43,25 +42,25 @@ export const Register = () => {
             name="name"
             type="text"
             placeholder="Họ và tên"
-             className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
+            className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
             onChange={handleChange}
           />
           <input
             name="email"
             type="email"
             placeholder="Email"
-             className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
+            className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
             onChange={handleChange}
           />
           {formRegister.email && (
             <span
-            className={`mt-2 inline-block text-xs ${
-            isRegister ? "text-green-600" : "text-red-600"
-            }`}
+              className={`mt-2 inline-block text-xs ${
+                isRegister ? "text-green-600" : "text-red-600"
+              }`}
             >
-            {isRegister
-            ? "Email đúng định dạng"
-            : "Email chưa đúng định dạng"}
+              {isRegister
+                ? "Email đúng định dạng"
+                : "Email chưa đúng định dạng"}
             </span>
           )}
           <div className="relative">
@@ -72,9 +71,12 @@ export const Register = () => {
               className="mt-2 w-full h-[50px] border border-gray p-5 rounded-lg text-[14px]"
               onChange={handleChange}
             />
-            <div className="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer" onClick={() => setHidden(!hidden)}>
-                      {hidden ? <VisibilityOffIcon/> : <RemoveRedEyeIcon/>}
-                    </div>
+            <div
+              className="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer"
+              onClick={() => setHidden(!hidden)}
+            >
+              {hidden ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
+            </div>
           </div>
           <button
             onClick={handleSubmit}

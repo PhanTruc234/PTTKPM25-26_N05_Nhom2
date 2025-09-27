@@ -65,16 +65,16 @@ export const Navbar = () => {
       <nav className="mr-28">
         <ul className="flex items-center gap-10">
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/"} className="text-[15px] lg:text-[20px]">Home</Link>
+            <Link to={"/"} className="text-[15px] lg:text-[20px]">Trang chủ</Link>
           </li>
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/"}>Shop</Link>
+            <Link to={"/"}>Cửa hàng</Link>
           </li>
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/products"}>Product</Link>
+            <Link to={"/products"}>Sản phẩm</Link>
           </li>
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/blog"}>Blog</Link>
+            <Link to={"/blog"}>Về chúng tôi</Link>
           </li>
         </ul>
       </nav>
@@ -114,7 +114,7 @@ export const Navbar = () => {
               )}
               <Link to={"/"} onClick={handleLogout} className="flex items-center gap-2 text-gray-700 hover:text-red-600 hover:bg-red-50 px-2 py-2 rounded-md transition">
                 <LogoutIcon fontSize="small" />
-                <span className="text-sm">Logout</span>
+                <span className="text-sm">Đăng xuất</span>
               </Link>
             </ul>
 

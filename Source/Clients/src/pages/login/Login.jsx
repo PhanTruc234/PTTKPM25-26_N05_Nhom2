@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../services/authenService";
 import { useDispatch, useSelector } from "react-redux";
 import { doLogin } from "../../store/features/auth/authenSlice";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [hidden, setHidden] = useState(false);
@@ -28,7 +28,6 @@ export const Login = () => {
   };
   console.log(formLogin, "formLogin");
   const handleSubmit = async () => {
-
     try {
       const res = await addUser(formLogin);
       console.log(res, "fkjbkfjkgfk");
@@ -59,17 +58,16 @@ export const Login = () => {
                     onChange={handelChange}
                   />
                   {formLogin.email && (
-                  <span
-                    className={`mt-2 inline-block text-xs ${
-                      isLogin ? "text-green-600" : "text-red-600"
-                    }`}
-                  >
-                    {isLogin
-                      ? "Email đúng định dạng"
-                      : "Email chưa đúng định dạng"}
-                  </span>
-                )}
-                  
+                    <span
+                      className={`mt-2 inline-block text-xs ${
+                        isLogin ? "text-green-600" : "text-red-600"
+                      }`}
+                    >
+                      {isLogin
+                        ? "Email đúng định dạng"
+                        : "Email chưa đúng định dạng"}
+                    </span>
+                  )}
                 </div>
 
                 <div className="mt-3 relative">
@@ -81,15 +79,18 @@ export const Login = () => {
                     placeholder="Password*"
                     onChange={handelChange}
                   />
-                  <div className="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer" onClick={() => setHidden(!hidden)}>
-                    {hidden ? <VisibilityOffIcon/> : <RemoveRedEyeIcon/>}
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 right-3 cursor-pointer"
+                    onClick={() => setHidden(!hidden)}
+                  >
+                    {hidden ? <VisibilityOffIcon /> : <RemoveRedEyeIcon />}
                   </div>
                 </div>
-                 {errorMessage && (
-                    <span className="mt-2 inline-block text-xs text-red-600">
-                      {errorMessage}
-                    </span>
-                  )}
+                {errorMessage && (
+                  <span className="mt-2 inline-block text-xs text-red-600">
+                    {errorMessage}
+                  </span>
+                )}
                 {/* <Link
                   href="#none"
                   className="text-xs mt-5 mb-5 block hover:underline"
@@ -100,13 +101,13 @@ export const Login = () => {
                   to={"/register"}
                   className="text-xs mt-5 mb-5 block hover:underline"
                 >
-                  Register
+                  Đăng ký
                 </Link>
                 <button
                   className="w-full uppercase h-[50px] bg-black text-white font-semibold text-sm px-4 flex-1 rounded-lg hover:bg hover:bg-white border hover:border-black hover:text-black transition-all"
                   onClick={handleSubmit}
                 >
-                  Login
+                  Đăng nhập
                 </button>
               </div>
             </div>

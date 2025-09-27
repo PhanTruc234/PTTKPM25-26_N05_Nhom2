@@ -25,8 +25,8 @@ export const SectionBestseller = () => {
   };
   console.log(data, "jjjjjjjjj");
   useEffect(() => {
-    handleGetList()
-  }, [data])
+    handleGetList();
+  }, [data]);
   return (
     <section className="mt-9 lg:mt-24 pt-16 pb-8 bg-gray">
       <div className="container">
@@ -34,14 +34,14 @@ export const SectionBestseller = () => {
           <div>
             <h2 className="text-3xl font-bold">Bestseller</h2>
             <p className="mt-2 text-lightGray">
-              Experience the best products at our store!
+              Trải nghiệm những sản phẩm tốt nhất tại cửa hàng của chúng tôi!
             </p>
           </div>
           <a
             href="#none"
             className="mt-6 lg:mt-0 h-9 border border-black px-7 inline-flex items-center font-semibold text-black rounded-full text-[15px] hover:bg-black hover:text-white transition-all duration-300"
           >
-            View All
+            Xem tất cả
           </a>
         </div>
         <ul className="mt-8 grid lg:grid-cols-3 gap-7 sm:grid-cols-1 md:grid-cols-2">

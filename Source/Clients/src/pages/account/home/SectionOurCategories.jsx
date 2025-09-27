@@ -9,7 +9,10 @@ export const SectionOurCategories = () => {
   const { state, dispatch } = useReducerCate();
   const location = useLocation();
   const name = location.pathname;
-  const { data } = useGetListCategory({ ...state, limit: name === "/" ? 3 : 10 });
+  const { data } = useGetListCategory({
+    ...state,
+    limit: name === "/" ? 3 : 10,
+  });
   String.prototype.capitalize = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
   };
@@ -23,12 +26,12 @@ export const SectionOurCategories = () => {
     <section className="mt-8 lg:mt-24">
       <div className="container">
         <div className="lg:flex justify-between items-center">
-          <h2 className="text-3xl font-bold">Our Categories</h2>
+          <h2 className="text-3xl font-bold">Danh Mục</h2>
           <a
             href="#none"
             className="mt-6 lg:mt-0 h-9 border border-black px-7 inline-flex items-center font-semibold text-black rounded-full text-[15px] hover:bg-black hover:text-white transition-all duration-300"
           >
-            View All
+            Xem tất cả
           </a>
         </div>
 

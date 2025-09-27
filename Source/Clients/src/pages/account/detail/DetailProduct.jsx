@@ -29,7 +29,7 @@ export const DetailProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const [attribute, setAttribute] = useState({})
+  const [attribute, setAttribute] = useState({});
   const productId = searchParams.get("id");
   const { detailProduct } = useGetDetailProduct(productId);
   const { handleAddToCart } = useAddToCart();
@@ -44,15 +44,21 @@ export const DetailProduct = () => {
   };
   const handleUpdateAmount = async () => {
     try {
-      const res = await updateProductAmount(detailProduct._id, detailProduct.amount - quantity);
-    } catch (error) {
-
-    };
-  }
+      const res = await updateProductAmount(
+        detailProduct._id,
+        detailProduct.amount - quantity
+      );
+    } catch (error) {}
+  };
   const handleAddToCartWithUpdate = async () => {
     try {
-      await handleAddToCart(productId, quantity, detailProduct.name, attribute.Color
-        , attribute.Size);
+      await handleAddToCart(
+        productId,
+        quantity,
+        detailProduct.name,
+        attribute.Color,
+        attribute.Size
+      );
       await handleUpdateAmount();
     } catch (error) {
       console.error(error);
@@ -68,7 +74,7 @@ export const DetailProduct = () => {
       <ul className="flex gap-2 items-center py-4">
         <li>
           <Link className="text-sm" to={"/"}>
-            Home /{" "}
+            Trang chủ /{" "}
           </Link>
         </li>
         <li>
@@ -86,10 +92,11 @@ export const DetailProduct = () => {
             {detailProduct.images.map((url) => (
               <li
                 key={url}
-                className={`${(selectedImg ? selectedImg : detailProduct.images[0]) === url
-                  ? "border-black border"
-                  : ""
-                  } w-[82px] cursor-pointer p-2 rounded-md hover:border-black transition-all`}
+                className={`${
+                  (selectedImg ? selectedImg : detailProduct.images[0]) === url
+                    ? "border-black border"
+                    : ""
+                } w-[82px] cursor-pointer p-2 rounded-md hover:border-black transition-all`}
                 onClick={() => handleChangeImg(url)}
               >
                 <img className="image" src={getImageUrl(url)} />
@@ -101,7 +108,9 @@ export const DetailProduct = () => {
             <div className="rounded-xl overflow-hidden">
               <img
                 className="image"
-                src={getImageUrl(selectedImg ? selectedImg : detailProduct.images[0])}
+                src={getImageUrl(
+                  selectedImg ? selectedImg : detailProduct.images[0]
+                )}
               />
             </div>
           </div>
@@ -144,19 +153,28 @@ export const DetailProduct = () => {
             </p>
             <p className="flex items-center gap-2 mt-6">
               <img className="w-5 block" src={ico_checked} alt="" />{" "}
-              <span className="text-green font-medium text-sm">{detailProduct.amount > 0 ? "Còn hàng" : "Hết hàng"}</span>
+              <span className="text-green font-medium text-sm">
+                {detailProduct.amount > 0 ? "Còn hàng" : "Hết hàng"}
+              </span>
             </p>
             <div>
-              {Object.entries(detailProduct?.attributes
-              ).map(([key, val]) => (
+              {Object.entries(detailProduct?.attributes).map(([key, val]) => (
                 <div key={key}>
                   <span className="font-medium">{cap(key)}:</span>
                   <div className="flex items-center gap-3">
                     {val.map((ele) => (
-                      <div className={`border border-black w-[50px] h-[50px] rounded-sm cursor-pointer flex items-center justify-center ${attribute[key] === ele ? "bg-blue-500" : ""}`} key={ele} onClick={() => setAttribute((prev) => ({
-                        ...prev,
-                        [cap(key)]: ele,
-                      }))}>
+                      <div
+                        className={`border border-black w-[50px] h-[50px] rounded-sm cursor-pointer flex items-center justify-center ${
+                          attribute[key] === ele ? "bg-blue-500" : ""
+                        }`}
+                        key={ele}
+                        onClick={() =>
+                          setAttribute((prev) => ({
+                            ...prev,
+                            [cap(key)]: ele,
+                          }))
+                        }
+                      >
                         {cap(ele)}
                       </div>
                     ))}
@@ -169,7 +187,7 @@ export const DetailProduct = () => {
                 <button
                   type="button"
                   className="text-lg block text-[0px] absolute left-4"
-                  onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                  onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
                   disabled={quantity === 1}
                 >
                   <span className="text-2xl leading-[24px]">-</span>
@@ -182,7 +200,11 @@ export const DetailProduct = () => {
                 <button
                   type="button"
                   className="text-lg block text-[0px] absolute right-4"
-                  onClick={() => setQuantity(prev => Math.min(detailProduct.amount, prev + 1))}
+                  onClick={() =>
+                    setQuantity((prev) =>
+                      Math.min(detailProduct.amount, prev + 1)
+                    )
+                  }
                 >
                   <span className="text-2xl leading-[24px]">+</span>
                 </button>
@@ -192,7 +214,7 @@ export const DetailProduct = () => {
                 onClick={handleAddToCartWithUpdate}
                 className="h-[50px] bg-black text-white font-semibold text-sm px-4 flex-1 rounded-full hover:bg hover:bg-white border hover:border-black hover:text-black transition-all"
               >
-                Add To Cart
+                Thêm vào giỏ hàng
               </button>
               <button
                 type="button"
@@ -209,7 +231,7 @@ export const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_reload} alt="" />
-                  Compare
+                  So sánh
                 </button>
               </li>
               <li>
@@ -218,7 +240,7 @@ export const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_question} alt="" />
-                  Question
+                  Hỏi đáp
                 </button>
               </li>
               <li>
@@ -227,7 +249,7 @@ export const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_shipping} alt="" />
-                  Shipping info
+                  Thông tin vận chuyển
                 </button>
               </li>
               <li>
@@ -236,7 +258,7 @@ export const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_share} alt="" />
-                  Share
+                  Chia sẻ
                 </button>
               </li>
             </ul>
@@ -264,20 +286,20 @@ export const DetailProduct = () => {
               </div>
               <div className="text-sm">
                 <p className="text-lightGray">
-                  Pickup available at{" "}
+                  Nhận hàng tại{" "}
                   <span className="font-semibold text-black"> Akaze store</span>
                 </p>
                 <p className="text-xs text-lightGray mt-1">
-                  Usually ready in 24 hours
+                  Sẵn sàng trong 24h
                 </p>
                 <button type="button" className="underline text-xs mt-4">
-                  View store information
+                  Xem thông tin cửa hàng
                 </button>
               </div>
             </div>
 
             <div className="text-center mt-6 p-6 bg-[#f6f6f6] rounded-lg">
-              <p className="text-sm tracking-widest">Guaranteed Checkout</p>
+              <p className="text-sm tracking-widest">Thanh toán đảm bảo</p>
               <img className="block mt-3" src={img_payment} alt="" />
             </div>
           </div>
@@ -290,7 +312,7 @@ export const DetailProduct = () => {
               type="button"
               className="text-lg font-semibold py-2 px-4 bg-black text-white rounded-full"
             >
-              Description
+              Mô tả
             </button>
           </li>
           <li>
@@ -298,7 +320,7 @@ export const DetailProduct = () => {
               type="button"
               className="lg:block hidden text-lg font-semibold py-2 px-4 text-[#8a8a8a] hover:text-black transition-all"
             >
-              Review
+              Đánh giá
             </button>
           </li>
           <li>
@@ -306,7 +328,7 @@ export const DetailProduct = () => {
               type="button"
               className="lg:block hidden text-lg font-semibold py-2 px-4 text-[#8a8a8a] hover:text-black transition-all"
             >
-              Shipping
+              Vận chuyển
             </button>
           </li>
           <li>
@@ -314,7 +336,7 @@ export const DetailProduct = () => {
               type="button"
               className="lg:block hidden text-lg font-semibold py-2 px-4 text-[#8a8a8a] hover:text-black transition-all"
             >
-              Return
+              Hoàn trả hàng
             </button>
           </li>
         </ul>

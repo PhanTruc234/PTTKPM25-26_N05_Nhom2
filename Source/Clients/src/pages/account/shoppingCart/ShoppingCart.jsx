@@ -8,7 +8,10 @@ import { setCart, setCartNew } from "../../../store/features/cart/cartSlice";
 import { toast } from "react-toastify";
 import { setOrderNew } from "../../../store/features/order/orderSlice";
 // import { useEffect } from "react";
-import { getDetilProduct, updateProductAmount } from "../../../services/productService";
+import {
+  getDetilProduct,
+  updateProductAmount,
+} from "../../../services/productService";
 import { getImageUrl } from "../../../libs/img";
 export const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -38,7 +41,7 @@ export const ShoppingCart = () => {
       const res = await deleteCart(id);
       const ress = await getDetilProduct(id);
       if (res.status === 200) {
-        await updateProductAmount(id, ress.data.amount + quantity)
+        await updateProductAmount(id, ress.data.amount + quantity);
         toast.success("Xóa thành công");
         dispatch(setCart(res.data.items));
       }
@@ -53,7 +56,7 @@ export const ShoppingCart = () => {
         dispatch(setOrderNew([]));
         dispatch(setCartNew(res.data.items));
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   return (
     <>
@@ -65,13 +68,13 @@ export const ShoppingCart = () => {
               <div className="border border-gray rounded-lg">
                 <div className="flex">
                   <div className="p-5 border border-gray w-2/4 flex items-center justify-center">
-                    Product
+                    Sản phẩm
                   </div>
                   <div className="p-5 border border-gray w-1/4 flex items-center justify-center">
-                    Quantity
+                    Số lượng
                   </div>
                   <div className="p-5 border border-gray w-1/4 flex items-center justify-center">
-                    Total
+                    Thành tiền
                   </div>
                   <div className="p-5 border border-gray w-1/4 flex items-center justify-center"></div>
                 </div>
@@ -81,23 +84,34 @@ export const ShoppingCart = () => {
                     <div className="p-5 border border-gray w-2/4">
                       <div className="flex items-center gap-3">
                         <div className="w-32 overflow-hidden">
-                          <img className="image" src={getImageUrl(product.productId.images[0])} alt="" />
+                          <img
+                            className="image"
+                            src={getImageUrl(product.productId.images[0])}
+                            alt=""
+                          />
                         </div>
                         <div>
-                          <p className="text-xs uppercase">{product.productId.name}</p>
-                          <span className="text-xs">{formatBigNumber(product.productId.price, true)}</span>
+                          <p className="text-xs uppercase">
+                            {product.productId.name}
+                          </p>
+                          <span className="text-xs">
+                            {formatBigNumber(product.productId.price, true)}
+                          </span>
                           <div className="mt-2 flex gap-4 text-xs">
                             <div className="flex items-center gap-1">
-                              <span className="font-medium">Color:</span>
-                              <span className="text-gray-700">{product.color}</span>
+                              <span className="font-medium">Màu sắc:</span>
+                              <span className="text-gray-700">
+                                {product.color}
+                              </span>
                             </div>
                             <div className="flex items-center gap-1">
-                              <span className="font-medium">Size:</span>
-                              <span className="text-gray-700">{product.size}</span>
+                              <span className="font-medium">Kích cỡ:</span>
+                              <span className="text-gray-700">
+                                {product.size}
+                              </span>
                             </div>
                           </div>
                         </div>
-
                       </div>
                     </div>
 
@@ -105,7 +119,10 @@ export const ShoppingCart = () => {
                       <div className="flex items-center w-max relative">
                         <button
                           onClick={() =>
-                            handleDecrementCart(product.productId._id, product.quantity - 1)
+                            handleDecrementCart(
+                              product.productId._id,
+                              product.quantity - 1
+                            )
                           }
                           disabled={product.quantity === 1}
                           className="absolute left-4 text-2xl"
@@ -120,7 +137,10 @@ export const ShoppingCart = () => {
                         />
                         <button
                           onClick={() =>
-                            handleIncrementCart(product.productId._id, product.quantity + 1)
+                            handleIncrementCart(
+                              product.productId._id,
+                              product.quantity + 1
+                            )
                           }
                           className="absolute right-4 text-2xl"
                         >
@@ -130,7 +150,10 @@ export const ShoppingCart = () => {
                     </div>
 
                     <div className="p-5 border border-gray w-1/4 flex items-center justify-center">
-                      {formatBigNumber(product.productId.price * product.quantity, true)}
+                      {formatBigNumber(
+                        product.productId.price * product.quantity,
+                        true
+                      )}
                     </div>
 
                     <div className="p-5 border border-gray w-1/4 flex items-center justify-center">
@@ -143,7 +166,11 @@ export const ShoppingCart = () => {
                           )
                         }
                       >
-                        <img className="block size-5" src={ico_trash} alt="Remove" />
+                        <img
+                          className="block size-5"
+                          src={ico_trash}
+                          alt="Remove"
+                        />
                       </button>
                     </div>
                   </div>
@@ -151,7 +178,7 @@ export const ShoppingCart = () => {
               </div>
 
               <div className="mt-9">
-                <p className="text-md">Special instructions for seller</p>
+                <p className="text-md">Ghi chú cho người bán</p>
                 <textarea
                   placeholder="How can we help you?"
                   className="mt-3 border border-gray p-5 w-full text-md rounded-md"
@@ -161,15 +188,19 @@ export const ShoppingCart = () => {
 
             <div className="col-span-2">
               <div className="p-7 bg-[#f7f4ef] rounded-lg">
-                <h3 className="uppercase font-medium text-sm">FREE SHIPPING ON ORDERS $100.00</h3>
-                <p className="text-sm mt-2">Congratulations, you've got free shipping!</p>
+                <h3 className="uppercase font-medium text-sm">
+                  Miễn phí vẫn chuyển vởi đơ hàng từ 500.000đ
+                </h3>
+                <p className="text-sm mt-2">
+                  Chúc mừng, bạn đã được miễn phí vận chuyển!
+                </p>
                 <div className="bg-[#14c100] w-full h-1 mt-5"></div>
               </div>
 
               <div className="p-6 mt-4 bg-[#f6f6f6] rounded-lg">
-                <span>Coupon</span>
+                <span>Mã giảm giá</span>
                 <p className="mt-2 mb-6 text-md text-lightGray">
-                  * Discount will be calculated and applied at checkout
+                  * Giảm giá sẽ được tính và áp dụng khi thanh toán
                 </p>
                 <input
                   type="text"
@@ -177,10 +208,11 @@ export const ShoppingCart = () => {
                   placeholder="Coupon code"
                 />
                 <p className="mt-6 font-semibold">
-                  Total:{" "}
+                  Tổng cộng:{" "}
                   {formatBigNumber(
                     cartItems.reduce(
-                      (total, item) => total + item.productId.price * item.quantity,
+                      (total, item) =>
+                        total + item.productId.price * item.quantity,
                       0
                     )
                   )}
@@ -191,7 +223,7 @@ export const ShoppingCart = () => {
                   className="flex items-center justify-center h-[50px] mt-6 bg-black w-full text-white font-semibold text-sm rounded-full hover:bg-white hover:text-black hover:border-black border transition-all"
                   onClick={handleSetCartNew}
                 >
-                  Check out
+                  Thanh toán
                 </Link>
               </div>
             </div>
