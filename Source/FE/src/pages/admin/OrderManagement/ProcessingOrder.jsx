@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { PendingOrder } from "./PendingOrder";
 
-export const ProcessingOrder = () => {
+const ProcessingOrder = () => {
   return (
     <div>
       <PendingOrder value={"PROCESSING"} />
     </div>
   );
 };
+export default ProcessingOrder;

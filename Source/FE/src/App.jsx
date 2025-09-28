@@ -4,7 +4,7 @@ import { AccountRoutes } from "./routes/AccountRoutes";
 import { AdminRoutes } from "./routes/AdminRoutes";
 import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { setCart } from "./store/features/cart/cartSlice";
 import { getCarts } from "./services/cartSevice";
 
@@ -29,10 +29,12 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <Routes>
-        {AccountRoutes}
-        {AdminRoutes}
-      </Routes>
+      <Suspense fallback={<div>Đang tải...</div>}>
+        <Routes>
+          {AccountRoutes}
+          {AdminRoutes}
+        </Routes>
+      </Suspense>
     </>
   );
 }

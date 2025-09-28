@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
 import { getUser, updateUser } from '../../../services/authenService';
 
-export const ProfileInfomation = () => {
+const ProfileInfomation = () => {
   const user = useSelector((state) => state.authenSlice);
   console.log(user);
 
@@ -206,3 +206,4 @@ export const ProfileInfomation = () => {
     </div>
   );
 }
+export default ProfileInfomation;

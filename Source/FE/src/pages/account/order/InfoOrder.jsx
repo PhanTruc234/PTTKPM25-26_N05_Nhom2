@@ -12,7 +12,7 @@ import { getImageUrl } from "../../../libs/img";
 import axiosClient from "../../../services/axiosClient";
 import { getDetilProduct } from "../../../services/productService";
 
-export const InfoOrder = ({ value }) => {
+const InfoOrder = ({ value }) => {
   const user = useSelector((state) => state.authenSlice);
   const dispatch1 = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -249,3 +249,4 @@ export const InfoOrder = ({ value }) => {
     </div>
   );
 };
+export default InfoOrder;

@@ -12,7 +12,7 @@ import axios from "axios";
 // import { useLocation, useNavigate } from "react-router-dom";
 import { getUser, updateUser } from "../../../services/authenService";
 import { useNavigate } from "react-router-dom";
-export const InfoPayment = () => {
+const InfoPayment = () => {
   const navigate = useNavigate()
   const [paymentMethod, setPaymentMethod] = useState("");
   const { detailOrder, handleGetListOrder } = useGetListOrder();
@@ -382,3 +382,4 @@ export const InfoPayment = () => {
     </div>
   );
 };
+export default InfoPayment;

@@ -1,5 +1,6 @@
 import { InfoOrder } from "./InfoOrder";
 
-export const Cancelled = () => {
+const Cancelled = () => {
   return <InfoOrder value={"CANCELLED"} />;
 };
+export default Cancelled;

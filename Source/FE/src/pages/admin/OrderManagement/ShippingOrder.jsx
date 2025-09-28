@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { PendingOrder } from "./PendingOrder";
-export const ShippingOrder = () => {
+const ShippingOrder = () => {
   return (
     <div>
       <PendingOrder value={"SHIPPING"} />
     </div>
   );
 };
+export default ShippingOrder;

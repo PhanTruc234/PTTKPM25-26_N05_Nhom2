@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Outlet } from 'react-router-dom'
 import { doLogout } from '../../../store/features/auth/authenSlice';
-export const Profile = () => {
+const Profile = () => {
   const user = useSelector((state) => state.authenSlice);
   const dispatch = useDispatch()
   console.log(user, "useruseruser");
@@ -53,3 +53,4 @@ export const Profile = () => {
     </div>
   );
 }
+export default Profile;

@@ -17,7 +17,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import useGetListUser from "../../../hooks/useGetListUser";
 import { formatBigNumber } from "../../../libs/format-big-number";
-export const Dashboard = () => {
+const Dashboard = () => {
     const { listUser, handleListUser } = useGetListUser();
     console.log(listUser, "uerrrr");
     const [revenue, setRevenue] = useState([]);
@@ -109,3 +109,4 @@ export const Dashboard = () => {
         </div>
     );
 }
+export default Dashboard;

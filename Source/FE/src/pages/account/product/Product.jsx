@@ -10,7 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import useGetListCategory from "../../../hooks/useGetListCategory";
 import { fetchProductByCategory } from "../../../services/productService";
 import img_banner_product from "../../../assets/img_product_list_banner.webp";
-export const Product = () => {
+const Product = () => {
   const priceRanges = [
     { id: 1, label: "Dưới 100K", query: { minPrice: 0, maxPrice: 100000 } },
     { id: 2, label: "100K - 500K", query: { minPrice: 100000, maxPrice: 500000 } },
@@ -234,3 +234,4 @@ export const Product = () => {
     </div>
   );
 };
+export default Product;

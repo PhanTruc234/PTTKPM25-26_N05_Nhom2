@@ -25,7 +25,7 @@ import { updateProductAmount } from "../../../services/productService";
 import { getImageUrl } from "../../../libs/img";
 import { cap } from "../../../libs/cap";
 import { blue } from "@mui/material/colors";
-export const DetailProduct = () => {
+const DetailProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
@@ -364,3 +364,4 @@ export const DetailProduct = () => {
     </Backdrop>
   );
 };
+export default DetailProduct;

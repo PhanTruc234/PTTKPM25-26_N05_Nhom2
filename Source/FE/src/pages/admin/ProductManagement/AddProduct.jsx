@@ -22,7 +22,7 @@ import axiosClient from "../../../services/axiosClient";
 import { getImageUrl } from "../../../libs/img";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const SERVER = "http://localhost:3100";
-export const AddProduct = () => {
+const AddProduct = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const idProduct = searchParams.get("id");
@@ -451,3 +451,4 @@ export const AddProduct = () => {
     </div>
   );
 };
+export default AddProduct;

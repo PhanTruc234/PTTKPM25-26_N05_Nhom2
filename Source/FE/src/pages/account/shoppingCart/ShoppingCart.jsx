@@ -11,7 +11,7 @@ import { setOrderNew } from "../../../store/features/order/orderSlice";
 import { getDetilProduct, updateProductAmount } from "../../../services/productService";
 import { getImageUrl } from "../../../libs/img";
 import { cap } from "../../../libs/cap";
-export const ShoppingCart = () => {
+const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartSlice.items);
   console.log(cartItems, ">>> cartItems")
@@ -209,3 +209,4 @@ export const ShoppingCart = () => {
     </>
   );
 };
+export default ShoppingCart

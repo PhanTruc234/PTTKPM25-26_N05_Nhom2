@@ -24,7 +24,7 @@ import {
 import { toast } from "react-toastify";
 
 const LIMIT_RECORD_PER_PAGE = 10;
-export const CategoryManagement = () => {
+const CategoryManagement = () => {
   const [detailCategory, setDetailCategory] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const { state, dispatch } = useReducerCate();
@@ -106,127 +106,128 @@ export const CategoryManagement = () => {
     }
   }, [state]);
   return (
-  <div className="p-5 bg-gray-50 min-h-screen">
-    <TableContainer className="bg-white shadow rounded-lg">
-      {/* Thêm danh mục */}
-      <div className="flex justify-end gap-3 pb-4 p-4">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleOpenCategory}
-        >
-          Thêm
-        </Button>
-      </div>
-
-      <Divider />
-
-      {/* Table */}
-      <Table>
-        <TableHead className="bg-blue-50">
-          <TableRow>
-            {[
-              "Tên danh mục",
-              "Hình ảnh",
-              "Mô tả",
-              "Thời gian tạo",
-              "",
-            ].map((title) => (
-              <TableCell
-                key={title}
-                className="whitespace-nowrap p-3 text-base font-semibold text-blue-800"
-              >
-                {title}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-
-        <TableBody>
-          {data?.data.map((item) => (
-            <TableRow
-              key={item._id}
-              className="hover:bg-blue-50 transition"
-            >
-              {/* Tên danh mục */}
-              <TableCell className="font-medium">{item.name} {item.id}</TableCell>
-
-              {/* Hình ảnh */}
-              <TableCell>
-                {item.image ? (
-                  <img
-                    src={item.image}
-                    width={80}
-                    className="rounded-md border"
-                    alt="Ảnh danh mục"
-                  />
-                ) : (
-                  <span className="text-gray-400 italic">-</span>
-                )}
-              </TableCell>
-
-              {/* Mô tả */}
-              <TableCell>{item.description || "-"}</TableCell>
-
-              {/* Thời gian tạo */}
-              <TableCell>{dayjs(item.createdAt).format("YYYY-MM-DD HH:mm")}</TableCell>
-
-              {/* Hành động */}
-              <TableCell className="flex gap-2">
-                <Button
-                  variant="outlined"
-                  color="error"
-                  size="small"
-                  onClick={() => handleRemoveCategory(item._id)}
-                >
-                  Xóa
-                </Button>
-                <Button
-                  variant="contained"
-                  color="warning"
-                  size="small"
-                  onClick={() => handleDetailEdit(item._id)}
-                >
-                  Sửa
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-
-      {/* Pagination */}
-      {data?.data.length ? (
-        <div className="flex justify-between items-center px-3 py-5">
-          <div className="text-sm text-gray-600">
-            Hiển thị danh mục thứ{" "}
-            {((data?.page || 1) - 1) * LIMIT_RECORD_PER_PAGE + 1} đến{" "}
-            {(data?.page || 1) < Math.ceil(data.total / LIMIT_RECORD_PER_PAGE)
-              ? (data?.page || 1) * LIMIT_RECORD_PER_PAGE
-              : data.total}{" "}
-            trong tổng số {data.total}
-          </div>
-          <Pagination
-            page={state.page}
-            onChange={(event, value) => handleChangePage(value)}
-            count={Math.ceil(data.total / LIMIT_RECORD_PER_PAGE)}
-            shape="rounded"
+    <div className="p-5 bg-gray-50 min-h-screen">
+      <TableContainer className="bg-white shadow rounded-lg">
+        {/* Thêm danh mục */}
+        <div className="flex justify-end gap-3 pb-4 p-4">
+          <Button
+            variant="contained"
             color="primary"
-          />
+            onClick={handleOpenCategory}
+          >
+            Thêm
+          </Button>
         </div>
-      ) : null}
-    </TableContainer>
 
-    {/* Dialog Thêm/Sửa */}
-    <DialogCategory
-      open={isOpenCategory}
-      onClose={() => {
-        setIsOpenCategory(false);
-        setDetailCategory(null);
-      }}
-      onSuccess={() => handleGetList()}
-      detailCategory={detailCategory}
-    />
-  </div>
-);
+        <Divider />
+
+        {/* Table */}
+        <Table>
+          <TableHead className="bg-blue-50">
+            <TableRow>
+              {[
+                "Tên danh mục",
+                "Hình ảnh",
+                "Mô tả",
+                "Thời gian tạo",
+                "",
+              ].map((title) => (
+                <TableCell
+                  key={title}
+                  className="whitespace-nowrap p-3 text-base font-semibold text-blue-800"
+                >
+                  {title}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+
+          <TableBody>
+            {data?.data.map((item) => (
+              <TableRow
+                key={item._id}
+                className="hover:bg-blue-50 transition"
+              >
+                {/* Tên danh mục */}
+                <TableCell className="font-medium">{item.name} {item.id}</TableCell>
+
+                {/* Hình ảnh */}
+                <TableCell>
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      width={80}
+                      className="rounded-md border"
+                      alt="Ảnh danh mục"
+                    />
+                  ) : (
+                    <span className="text-gray-400 italic">-</span>
+                  )}
+                </TableCell>
+
+                {/* Mô tả */}
+                <TableCell>{item.description || "-"}</TableCell>
+
+                {/* Thời gian tạo */}
+                <TableCell>{dayjs(item.createdAt).format("YYYY-MM-DD HH:mm")}</TableCell>
+
+                {/* Hành động */}
+                <TableCell className="flex gap-2">
+                  <Button
+                    variant="outlined"
+                    color="error"
+                    size="small"
+                    onClick={() => handleRemoveCategory(item._id)}
+                  >
+                    Xóa
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="warning"
+                    size="small"
+                    onClick={() => handleDetailEdit(item._id)}
+                  >
+                    Sửa
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+
+        {/* Pagination */}
+        {data?.data.length ? (
+          <div className="flex justify-between items-center px-3 py-5">
+            <div className="text-sm text-gray-600">
+              Hiển thị danh mục thứ{" "}
+              {((data?.page || 1) - 1) * LIMIT_RECORD_PER_PAGE + 1} đến{" "}
+              {(data?.page || 1) < Math.ceil(data.total / LIMIT_RECORD_PER_PAGE)
+                ? (data?.page || 1) * LIMIT_RECORD_PER_PAGE
+                : data.total}{" "}
+              trong tổng số {data.total}
+            </div>
+            <Pagination
+              page={state.page}
+              onChange={(event, value) => handleChangePage(value)}
+              count={Math.ceil(data.total / LIMIT_RECORD_PER_PAGE)}
+              shape="rounded"
+              color="primary"
+            />
+          </div>
+        ) : null}
+      </TableContainer>
+
+      {/* Dialog Thêm/Sửa */}
+      <DialogCategory
+        open={isOpenCategory}
+        onClose={() => {
+          setIsOpenCategory(false);
+          setDetailCategory(null);
+        }}
+        onSuccess={() => handleGetList()}
+        detailCategory={detailCategory}
+      />
+    </div>
+  );
 };
+export default CategoryManagement;

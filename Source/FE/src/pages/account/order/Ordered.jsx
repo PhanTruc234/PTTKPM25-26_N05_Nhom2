@@ -1,5 +1,6 @@
 import { InfoOrder } from "./InfoOrder";
 
-export const Ordered = () => {
+const Ordered = () => {
   return <InfoOrder value={"PENDING"} />;
 };
+export default Ordered;

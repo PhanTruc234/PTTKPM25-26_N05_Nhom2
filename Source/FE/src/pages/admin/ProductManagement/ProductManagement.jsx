@@ -27,7 +27,7 @@ import useGetListCategory from "../../../hooks/useGetListCategory";
 import { cap } from "../../../libs/cap";
 const LIMIT_RECORD_PER_PAGE = 10;
 const SERVER = "http://localhost:3100";
-export const ProductManagement = () => {
+const ProductManagement = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { state, dispatch } = useReducerUpdateFilterProducts();
@@ -312,3 +312,4 @@ export const ProductManagement = () => {
     </div>
   );
 };
+export default ProductManagement;

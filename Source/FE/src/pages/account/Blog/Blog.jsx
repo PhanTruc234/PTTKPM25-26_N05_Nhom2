@@ -2,7 +2,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import FlightIcon from "@mui/icons-material/Flight";
 import ChangeHistoryIcon from "@mui/icons-material/ChangeHistory";
 
-export const Blog = () => {
+const Blog = () => {
     return (
         <section>
             <div>
@@ -59,3 +59,4 @@ export const Blog = () => {
         </section>
     );
 };
+export default Blog;

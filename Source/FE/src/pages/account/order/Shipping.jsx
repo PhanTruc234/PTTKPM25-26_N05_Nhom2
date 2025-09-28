@@ -1,5 +1,6 @@
 import { InfoOrder } from "./InfoOrder";
 
-export const Shippng = () => {
+const Shippng = () => {
   return <InfoOrder value={"SHIPPING"} />;
 };
+export default Shippng;

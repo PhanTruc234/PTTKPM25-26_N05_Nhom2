@@ -14,7 +14,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import { Button } from "@mui/material";
 import { getImageUrl } from "../../../libs/img";
 import { cap } from "../../../libs/cap";
-export const DetailPayment = () => {
+const DetailPayment = () => {
   const { detailOrder, handleGetListOrder } = useGetListOrder({
     limit: 10,
     page: 1,
@@ -30,7 +30,7 @@ export const DetailPayment = () => {
     return dataOrder
       .filter((order) => order?.userId?._id === user.user._id)
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  }, [dataOrder, user.user._id]);
+  }, [dataOrder, user?.user?._id]);
   const totalPrice = userOrders[0]?.totalPrice;
   const status = userOrders[0]?.status;
   const handleCancleOrder = async (id, value, productid, amount, quantity) => {
@@ -178,3 +178,4 @@ export const DetailPayment = () => {
     </section>
   );
 };
+export default DetailPayment;
