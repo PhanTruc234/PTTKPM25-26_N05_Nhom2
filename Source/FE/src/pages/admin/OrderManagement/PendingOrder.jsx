@@ -152,7 +152,7 @@ export const PendingOrder = ({ value }) => {
                     className="hover:bg-blue-50 transition"
                   >
                     {/* Khách hàng */}
-                    <TableCell>{order?.userId?.name || "Khách hàng ẩn danh"}</TableCell>
+                    <TableCell>{order?.userId?.name}</TableCell>
 
                     {/* Tên sản phẩm */}
                     <TableCell>{orderItem.productId.name}</TableCell>

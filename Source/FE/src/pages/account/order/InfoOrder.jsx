@@ -104,13 +104,14 @@ export const InfoOrder = ({ value }) => {
       handleOrderByUser()
     }
   }, [user])
-  const userOrders = data.length > 0 ? data : useMemo(() => {
+  const memoizedOrders = useMemo(() => {
     return detailOrder?.data?.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }, [detailOrder?.data?.data]);
-  console.log(userOrders, ">>> userOrders")
+      (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    ) || [];
+  }, [detailOrder?.data]);
+
+  const userOrders = data.length > 0 ? data : memoizedOrders;
+  console.log(userOrders, ">>>> userOrders")
   return (
     <div className="">
       <div className="container flex gap-7 mb-10">

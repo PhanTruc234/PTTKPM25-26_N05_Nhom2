@@ -16,10 +16,10 @@ export class OrderSeeder {
     ) { }
 
     async seed() {
-        const orderss = await this.orderService['orderModel'].find().sort({ _id: 1 }).exec(); // sắp xếp theo _id (đơn cũ nhất đầu tiên)
-        const idsToKeep = orderss.slice(0, 1).map(o => o._id); // giữ 1 đơn đầu tiên
-        await this.orderService['orderModel'].deleteMany({ _id: { $nin: idsToKeep } });
-        console.log('Đã xóa các order không cần thiết, giữ đơn đầu tiên');
+        // const orderss = await this.orderService['orderModel'].find().sort({ _id: 1 }).exec();
+        // const idsToKeep = orderss.slice(0, 0).map(o => o._id);
+        // await this.orderService['orderModel'].deleteMany({ _id: { $nin: idsToKeep } });
+        // console.log('Đã xóa các order không cần thiết, giữ đơn đầu tiên');
         const users = await this.userService['userModel'].find().exec();
         if (!users.length) {
             return console.log('Chưa có user để tạo đơn hàng');
@@ -40,10 +40,15 @@ export class OrderSeeder {
             const items: OrderItem[] = [];
             for (let j = 0; j < numItems; j++) {
                 const product = products[Math.floor(Math.random() * products.length)];
+                const colors = product.attributes.color || [];
+                const colorObj = colors[Math.floor(Math.random() * colors.length)];
+                const variant = colorObj?.variants[Math.floor(Math.random() * colorObj.variants.length)];
                 items.push({
                     productId: product._id as Types.ObjectId,
                     amount: Math.floor(Math.random() * 5) + 1,
-                    price: product.price,
+                    price: variant.price,
+                    color: colorObj.name,
+                    size: variant.size,
                 });
             }
 

@@ -8,12 +8,10 @@ export class UserSeeder {
     constructor(private readonly userService: UserService) { }
 
     async seed() {
-        const users = await this.userService['userModel'].find().sort({ _id: 1 }).exec();
-        const idsToKeep = users.slice(0, 2).map(u => u._id);
-        await this.userService['userModel'].deleteMany({ _id: { $nin: idsToKeep } });
-
-        // // Tạo thêm 10 user mới với mật khẩu hash sẵn
-        for (let i = 0; i < 20; i++) {
+        // const users = await this.userService['userModel'].find().sort({ _id: 1 }).exec();
+        // const idsToKeep = users.slice(0, 1).map(u => u._id);
+        // await this.userService['userModel'].deleteMany({ _id: { $nin: idsToKeep } });
+        for (let i = 0; i < 100; i++) {
             const email = `user${Date.now()}_${i}@example.com`;
             const hashedPassword = await bcrypt.hash('123456', 10);
             await this.userService.create({
