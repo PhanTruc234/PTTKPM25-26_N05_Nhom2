@@ -52,7 +52,7 @@ export const PendingOrder = ({ value }) => {
     handleGetListOrder();
   };
   const status = value
-    ? detailOrder?.data?.data.filter((ele) => ele.status === value)
+    ? detailOrder?.data?.filter((ele) => ele.status === value)
     : detailOrder?.data;
   console.log(status, "statusstatus");
   useEffect(() => {
@@ -143,7 +143,7 @@ export const PendingOrder = ({ value }) => {
           </TableHead>
 
           <TableBody>
-            {status?.data?.map((order) =>
+            {status?.map((order) =>
               order.items
                 .filter((orderItem) => orderItem.productId)
                 .map((orderItem) => (
@@ -196,10 +196,10 @@ export const PendingOrder = ({ value }) => {
                           variant="contained"
                           size="small"
                           className={`capitalize ${nextStatus === "completed"
-                              ? "bg-green-500 hover:bg-green-600 text-white"
-                              : nextStatus === "cancelled"
-                                ? "bg-red-500 hover:bg-red-600 text-white"
-                                : "bg-blue-500 hover:bg-blue-600 text-white"
+                            ? "bg-green-500 hover:bg-green-600 text-white"
+                            : nextStatus === "cancelled"
+                              ? "bg-red-500 hover:bg-red-600 text-white"
+                              : "bg-blue-500 hover:bg-blue-600 text-white"
                             } transition`}
                           onClick={() => handlePaymentStatus(order._id, nextStatus, nextStatus === "COMPLETED" ? "paid" : "unpaid")}
                         >
