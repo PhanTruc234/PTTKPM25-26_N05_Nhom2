@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   Divider,
   MenuItem,
   Pagination,
@@ -31,7 +32,7 @@ const ProductManagement = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const { state, dispatch } = useReducerUpdateFilterProducts();
-  const { data, handleGetList } = useGetListProducts(state);
+  const { data, handleGetList, isLoading } = useGetListProducts(state);
   console.log(data, ">>>>>>PPPPPPPPPPPP")
   const [filterProductByCate, setFilterProductByCate] = useState("");
   const [productId, setProductId] = useState("");
@@ -118,6 +119,13 @@ const ProductManagement = () => {
       setSearchParams(new URLSearchParams(dataFilterJson));
     }
   }, [state]);
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-[300px]">
+        <CircularProgress />
+      </div>
+    );
+  }
   return (
     <div className="p-5 bg-gray-50 min-h-screen">
       <TableContainer className="bg-white shadow rounded-lg">

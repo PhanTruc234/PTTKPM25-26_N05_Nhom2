@@ -4,7 +4,7 @@ import useReducerUpdateFilterProducts, {
   UPDATE_FILTER_ACTION_PRODUCT,
 } from "../../../hooks/useReducerUpdateFilterProduct";
 import { BoxProduct } from "../../../components/BoxProduct";
-import { Button, Checkbox, FormControlLabel, IconButton, MenuItem, Pagination, TextField } from "@mui/material";
+import { Button, Checkbox, CircularProgress, FormControlLabel, IconButton, MenuItem, Pagination, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import useGetListCategory from "../../../hooks/useGetListCategory";
@@ -26,7 +26,7 @@ const Product = () => {
   const { state, dispatch } = useReducerUpdateFilterProducts();
   const [dataFilter, setDataFilter] = useState([]);
   const [filterProductByCate, setFilterProductByCate] = useState("");
-  const { data } = useGetListProducts(state);
+  const { data, isLoading } = useGetListProducts(state);
   const [check, setCheck] = useState(false)
   const { data: cateData } = useGetListCategory({
     page: 1,
@@ -130,6 +130,13 @@ const Product = () => {
     handleSearch();
     handlePrice();
     handleCheckBox();
+  }
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-[300px]">
+        <CircularProgress />
+      </div>
+    );
   }
   return (
     <div>
