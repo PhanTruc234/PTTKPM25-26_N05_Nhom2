@@ -4,6 +4,7 @@ import { cap } from "../../../libs/cap";
 import { UPDATE_FILTER_ACTION_PRODUCT } from "../../../hooks/useReducerUpdateFilterProduct";
 import useReducerCate from "../../../hooks/useReducerCate";
 import { useLocation } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 
 export const SectionOurCategories = () => {
   const { state, dispatch } = useReducerCate();
@@ -19,6 +20,18 @@ export const SectionOurCategories = () => {
       payload: { page: value },
     });
   };
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
   return (
     <section className="mt-8 lg:mt-24">
       <div className="container">
@@ -32,11 +45,11 @@ export const SectionOurCategories = () => {
           </a>
         </div>
 
-        <ul className="mt-10 grid lg:grid-cols-3 gap-10 cursor-pointer sm:grid-cols-1 md:grid-cols-2">
+        <ul ref={ref} className="mt-10 grid lg:grid-cols-3 gap-10 cursor-pointer sm:grid-cols-1 md:grid-cols-2">
           {data &&
             data?.data.map((item) => (
               <li key={item._id} className="">
-                <div className="rounded-[20px] overflow-hidden relative group">
+                <div className={`rounded-[20px] overflow-hidden relative group ${isVisible ? "animate-slideInLeft opacity-100" : "opacity-0"}`}>
                   <img className="image" src={item.image} alt="" />
                   <a
                     href="#none"

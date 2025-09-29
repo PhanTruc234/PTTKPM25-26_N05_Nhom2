@@ -8,10 +8,25 @@ import { formatBigNumber } from "../libs/format-big-number";
 import { toSlug } from "../libs/toSlug";
 import { useAddToCart } from "../hooks/useAddCart";
 import { getImageUrl } from "../libs/img";
+import { useEffect, useRef, useState } from "react";
 export const BoxProduct = ({ item }) => {
   const { handleAddToCart } = useAddToCart();
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.4 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
   return (
-    <li className="mt-6 md:mt-0 text-center group relative animate-slideInLeft">
+    <li ref={ref}
+      className={`mt-6 md:mt-0 text-center group relative transition-all duration-500 ${isVisible ? "animate-slideInLeft opacity-100" : "opacity-0"
+        }`}>
       {item.salePercent ? (
         <span className="absolute py-1 text-xs px-2 top-3 left-3 bg-red-600 text-white rounded-xl">
           -{item.salePercent}%{" "}
