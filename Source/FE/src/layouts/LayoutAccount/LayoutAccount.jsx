@@ -14,16 +14,16 @@ export const LayoutAccount = () => {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-24">
             <div>
-              <h3 className="font-bold text-lg mb-4">About Us</h3>
+              <h3 className="font-bold text-lg mb-4">Về chúng tôi</h3>
               <ul className="space-y-2">
                 <li>
                   <a href="#" className="hover:underline">
-                    Our Shops
+                    Cửa hàng của chúng tôi
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Contact
+                    Liên hệ
                   </a>
                 </li>
                 <li>
@@ -38,7 +38,7 @@ export const LayoutAccount = () => {
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Press
+                    Báo chí
                   </a>
                 </li>
               </ul>
@@ -46,8 +46,7 @@ export const LayoutAccount = () => {
 
             <div className="md:col-span-2 md:flex md:flex-col md:justify-center">
               <h3 className="font-semibold text-xl mb-4 lg:text-center">
-                Sign Up For Our Newsletter To Receive Notifications And Other
-                Promotions
+                Đăng ký nhận bản tin để nhận thông báo và khuyến mãi mới nhất
               </h3>
               <div className="flex mt-4">
                 <input
@@ -56,32 +55,32 @@ export const LayoutAccount = () => {
                   className="flex-grow px-4 py-4 rounded-l-full border border-r-0 border-gray-300 focus:outline-none focus:border-black"
                 />
                 <button className="bg-black text-white px-6 py-2 rounded-r-full hover:bg-gray-800 transition duration-300">
-                  Subscribe
+                  Đăng ký
                 </button>
               </div>
             </div>
 
             <div>
-              <h3 className="font-bold text-lg mb-4">Customer Services</h3>
+              <h3 className="font-bold text-lg mb-4">Dịch vụ khách hàng</h3>
               <ul className="space-y-2">
                 <li>
                   <a href="#" className="hover:underline">
-                    FAQs
+                    Câu hỏi thường gặp
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Store Locator
+                    Tìm cửa hàng
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Returns
+                    Trả hàng
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:underline">
-                    Shipping Information
+                    Thông tin vận chuyển
                   </a>
                 </li>
                 <li>

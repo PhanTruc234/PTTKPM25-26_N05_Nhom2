@@ -113,7 +113,7 @@ export const BoxProduct = ({ item }) => {
             onClick={() => handleAddToCart(item._id, 1, item.name)}
             className="uppercase text-xs font-medium tracking-widest relative before:absolute before:bottom-0 !p-0 before:w-0 before:h-[1px] before:bg-black before:left-0 hover:before:w-full before:transition-all before:duration-500"
           >
-            Add to cart
+            Thêm vào giỏ hàng
           </Button>
         </div>
       </div>

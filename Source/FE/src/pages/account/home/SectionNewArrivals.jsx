@@ -27,9 +27,9 @@ export const SectionNewArrivals = () => {
       <div className="container">
         <div className="lg:flex justify-between items-end">
           <div>
-            <h2 className="text-3xl font-bold">New Arrivals</h2>
+            <h2 className="text-3xl font-bold">Hàng mới về</h2>
             <p className="mt-2 text-lightGray">
-              Experience the best products at our store!
+              Trải nghiệm những sản phẩm tốt nhất tại cửa hàng của chúng tôi!
             </p>
           </div>
           <a

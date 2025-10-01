@@ -12,7 +12,7 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import { doLogout } from "../store/features/auth/authenSlice";
 import useGetListOrder from "../hooks/useGetListOrder";
 import { useEffect, useMemo, useState } from "react";
-import ReorderIcon from '@mui/icons-material/Reorder';
+import ReorderIcon from "@mui/icons-material/Reorder";
 import axiosClient from "../services/axiosClient";
 import { logoutUser } from "../services/authenService";
 export const Navbar = () => {
@@ -65,28 +65,35 @@ export const Navbar = () => {
       <nav className="mr-28">
         <ul className="flex items-center gap-10">
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/"} className="text-[15px] lg:text-[20px]">Home</Link>
+            <Link to={"/"} className="text-[15px] lg:text-[20px]">
+              Trang chủ
+            </Link>
           </li>
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/"}>Shop</Link>
+            <Link to={"/"}>Cửa hàng</Link>
           </li>
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/products"}>Product</Link>
+            <Link to={"/products"}>Sản phẩm</Link>
           </li>
           <li className="relative after:absolute after:h-[1.5px] after:bg-black after:content-[''] after:w-full after:left-0 after:bottom-[-2px] after:transition-all after:scale-x-0 hover:after:-scale-x-100 after:duration-300">
-            <Link to={"/blog"}>Blog</Link>
+            <Link to={"/blog"}>Về chúng tôi</Link>
           </li>
         </ul>
       </nav>
-      <div className="block lg:hidden cursor-pointer" onClick={() => setActive(!active)}>
+      <div
+        className="block lg:hidden cursor-pointer"
+        onClick={() => setActive(!active)}
+      >
         <ReorderIcon />
       </div>
-      <div className={`
+      <div
+        className={`
     gap-6 items-center shrink-0
     sm:absolute sm:top-[45px] sm:right-[-10px] sm:p-5 sm:rounded-sm sm:bg-gray-100 sm:justify-center
     lg:relative lg:top-0 lg:right-0 lg:p-0 lg:rounded-none lg:bg-transparent lg:ml-auto
     ${active ? "flex sm:flex-col lg:flex-row" : "hidden lg:flex"}
-  `}>
+  `}
+      >
         <Link to={"/"}>
           <img className="size-5" src={ico_search} alt="" />
         </Link>
@@ -98,11 +105,16 @@ export const Navbar = () => {
             <ul className="hidden absolute lg:top-[45px] lg:-right-20 w-[200px] bg-white rounded-lg shadow-lg p-4 space-y-3 group-hover:block z-50 sm:right-10 sm:top-0">
               <div className="border-b pb-3">
                 <p className="text-sm text-gray-500">Xin chào</p>
-                <p className="text-lg font-semibold text-gray-800 mt-1">{user?.name}</p>
+                <p className="text-lg font-semibold text-gray-800 mt-1">
+                  {user?.name}
+                </p>
               </div>
-              <Link to={`/profile/${user?._id}`} className="flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-gray-100 px-2 py-2 rounded-md transition">
+              <Link
+                to={`/profile/${user?._id}`}
+                className="flex items-center gap-2 text-gray-700 hover:text-blue-600 hover:bg-gray-100 px-2 py-2 rounded-md transition"
+              >
                 <PersonIcon fontSize="small" />
-                <span className="text-sm">Profile</span>
+                <span className="text-sm">Hồ sơ</span>
               </Link>
               {user.role === "ADMIN" && (
                 <li className="flex items-center gap-2 text-gray-700 hover:text-purple-600 hover:bg-purple-50 px-2 py-2 rounded-md transition">
@@ -112,12 +124,15 @@ export const Navbar = () => {
                   </Link>
                 </li>
               )}
-              <Link to={"/"} onClick={handleLogout} className="flex items-center gap-2 text-gray-700 hover:text-red-600 hover:bg-red-50 px-2 py-2 rounded-md transition">
+              <Link
+                to={"/"}
+                onClick={handleLogout}
+                className="flex items-center gap-2 text-gray-700 hover:text-red-600 hover:bg-red-50 px-2 py-2 rounded-md transition"
+              >
                 <LogoutIcon fontSize="small" />
-                <span className="text-sm">Logout</span>
+                <span className="text-sm">Đăng xuất</span>
               </Link>
             </ul>
-
           </div>
         ) : (
           <Link to={"/login"}>
@@ -127,8 +142,9 @@ export const Navbar = () => {
 
         <Link to="shopping-cart" className="relative">
           <span
-            className={`absolute -top-[8px] -right-[10px] size-[18px] ${cartItem.length > 0 ? "bg-black" : ""
-              } text-white rounded-full text-xs grid place-items-center`}
+            className={`absolute -top-[8px] -right-[10px] size-[18px] ${
+              cartItem.length > 0 ? "bg-black" : ""
+            } text-white rounded-full text-xs grid place-items-center`}
           >
             {cartItem.length > 0 ? cartItem.length : ""}
           </span>
@@ -136,8 +152,9 @@ export const Navbar = () => {
         </Link>
         <Link to="order-detail" className="relative">
           <span
-            className={`absolute -top-[8px] -right-[10px] size-[18px] ${userOrders[0] ? "bg-black" : ""
-              } text-white rounded-full text-xs grid place-items-center`}
+            className={`absolute -top-[8px] -right-[10px] size-[18px] ${
+              userOrders[0] ? "bg-black" : ""
+            } text-white rounded-full text-xs grid place-items-center`}
           >
             {userOrders[0] ? "1" : ""}
           </span>

@@ -29,7 +29,7 @@ const DetailProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const [attribute, setAttribute] = useState({})
+  const [attribute, setAttribute] = useState({});
   const [price, setPrice] = useState(0);
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
@@ -47,17 +47,24 @@ const DetailProduct = () => {
   };
   const handleUpdateAmount = async () => {
     try {
-      const res = await updateProductAmount(detailProduct._id, detailProduct.amount - quantity);
-    } catch (error) {
-
-    };
-  }
+      const res = await updateProductAmount(
+        detailProduct._id,
+        detailProduct.amount - quantity
+      );
+    } catch (error) {}
+  };
   const handleAddToCartWithUpdate = async () => {
     const finalPrice =
       price !== 0 ? Number(price) : Number(detailProduct.price);
     try {
-      await handleAddToCart(productId, quantity, detailProduct.name, color
-        , size, finalPrice);
+      await handleAddToCart(
+        productId,
+        quantity,
+        detailProduct.name,
+        color,
+        size,
+        finalPrice
+      );
       await handleUpdateAmount();
     } catch (error) {
       console.error(error);
@@ -74,10 +81,10 @@ const DetailProduct = () => {
     return {
       name: item.name,
       sizes,
-      price
-    }
-  })
-  console.log(colorData, ">>> colorData")
+      price,
+    };
+  });
+  console.log(colorData, ">>> colorData");
   return detailProduct ? (
     <div className="container">
       <ul className="flex gap-2 items-center py-4">
@@ -101,10 +108,11 @@ const DetailProduct = () => {
             {detailProduct.images.map((url) => (
               <li
                 key={url}
-                className={`${(selectedImg ? selectedImg : detailProduct.images[0]) === url
-                  ? "border-black border"
-                  : ""
-                  } w-[82px] cursor-pointer p-2 rounded-md hover:border-black transition-all`}
+                className={`${
+                  (selectedImg ? selectedImg : detailProduct.images[0]) === url
+                    ? "border-black border"
+                    : ""
+                } w-[82px] cursor-pointer p-2 rounded-md hover:border-black transition-all`}
                 onClick={() => handleChangeImg(url)}
               >
                 <img className="image" src={getImageUrl(url)} />
@@ -116,7 +124,9 @@ const DetailProduct = () => {
             <div className="rounded-xl overflow-hidden">
               <img
                 className="image"
-                src={getImageUrl(selectedImg ? selectedImg : detailProduct.images[0])}
+                src={getImageUrl(
+                  selectedImg ? selectedImg : detailProduct.images[0]
+                )}
               />
             </div>
           </div>
@@ -144,7 +154,9 @@ const DetailProduct = () => {
           </ul>
 
           <p className="mt-3 text-xl font-semibold">
-            {price !== 0 ? formatBigNumber(price, true) : formatBigNumber(detailProduct.price, true)}
+            {price !== 0
+              ? formatBigNumber(price, true)
+              : formatBigNumber(detailProduct.price, true)}
           </p>
           <div className="mt-2 pt-2 border-t border-gray">
             <p className="flex items-center gap-2 mt-4">
@@ -159,7 +171,9 @@ const DetailProduct = () => {
             </p>
             <p className="flex items-center gap-2 mt-6">
               <img className="w-5 block" src={ico_checked} alt="" />{" "}
-              <span className="text-green font-medium text-sm">{detailProduct.amount > 0 ? "Còn hàng" : "Hết hàng"}</span>
+              <span className="text-green font-medium text-sm">
+                {detailProduct.amount > 0 ? "Còn hàng" : "Hết hàng"}
+              </span>
             </p>
             <div>
               {colorData.map((key, index) => (
@@ -168,11 +182,20 @@ const DetailProduct = () => {
                     <div>Màu :{cap(key.name)}</div>
                     <ul className="flex items-center gap-4">
                       {key.sizes.map((ele) => (
-                        <div onClick={() => {
-                          setColor(key.name)
-                          setSize(ele)
-                          setPrice(key.price[0]);
-                        }} className={`w-[30px] h-[40px] border border-black rounded-sm flex items-center justify-center ${size === ele && color === key.name ? "bg-blue-500" : ""} cursor-pointer text-[13px] mt-2`}>{ele}</div>
+                        <div
+                          onClick={() => {
+                            setColor(key.name);
+                            setSize(ele);
+                            setPrice(key.price[0]);
+                          }}
+                          className={`w-[30px] h-[40px] border border-black rounded-sm flex items-center justify-center ${
+                            size === ele && color === key.name
+                              ? "bg-blue-500"
+                              : ""
+                          } cursor-pointer text-[13px] mt-2`}
+                        >
+                          {ele}
+                        </div>
                       ))}
                     </ul>
                   </div>
@@ -184,7 +207,7 @@ const DetailProduct = () => {
                 <button
                   type="button"
                   className="text-lg block text-[0px] absolute left-4"
-                  onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+                  onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}
                   disabled={quantity === 1}
                 >
                   <span className="text-2xl leading-[24px]">-</span>
@@ -197,7 +220,11 @@ const DetailProduct = () => {
                 <button
                   type="button"
                   className="text-lg block text-[0px] absolute right-4"
-                  onClick={() => setQuantity(prev => Math.min(detailProduct.amount, prev + 1))}
+                  onClick={() =>
+                    setQuantity((prev) =>
+                      Math.min(detailProduct.amount, prev + 1)
+                    )
+                  }
                 >
                   <span className="text-2xl leading-[24px]">+</span>
                 </button>
@@ -207,7 +234,7 @@ const DetailProduct = () => {
                 onClick={handleAddToCartWithUpdate}
                 className="h-[50px] bg-black text-white font-semibold text-sm px-4 flex-1 rounded-full hover:bg hover:bg-white border hover:border-black hover:text-black transition-all"
               >
-                Add To Cart
+                Thêm vào giỏ hàng
               </button>
               <button
                 type="button"
@@ -224,7 +251,7 @@ const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_reload} alt="" />
-                  Compare
+                  So sánh
                 </button>
               </li>
               <li>
@@ -233,7 +260,7 @@ const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_question} alt="" />
-                  Question
+                  Giải đáp
                 </button>
               </li>
               <li>
@@ -242,7 +269,7 @@ const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_shipping} alt="" />
-                  Shipping info
+                  Thông tin vận chuyển
                 </button>
               </li>
               <li>
@@ -251,7 +278,7 @@ const DetailProduct = () => {
                   className="flex items-center gap-4 text-sm font-medium"
                 >
                   <img className="w-4" src={ico_share} alt="" />
-                  Share
+                  Chia sẻ
                 </button>
               </li>
             </ul>
@@ -286,13 +313,13 @@ const DetailProduct = () => {
                   Usually ready in 24 hours
                 </p>
                 <button type="button" className="underline text-xs mt-4">
-                  View store information
+                  Xêm thông tin cửa hàng
                 </button>
               </div>
             </div>
 
             <div className="text-center mt-6 p-6 bg-[#f6f6f6] rounded-lg">
-              <p className="text-sm tracking-widest">Guaranteed Checkout</p>
+              <p className="text-sm tracking-widest">Thanh toán đảm bảo</p>
               <img className="block mt-3" src={img_payment} alt="" />
             </div>
           </div>
@@ -305,7 +332,7 @@ const DetailProduct = () => {
               type="button"
               className="text-lg font-semibold py-2 px-4 bg-black text-white rounded-full"
             >
-              Description
+              Mô tả
             </button>
           </li>
           <li>
@@ -313,7 +340,7 @@ const DetailProduct = () => {
               type="button"
               className="lg:block hidden text-lg font-semibold py-2 px-4 text-[#8a8a8a] hover:text-black transition-all"
             >
-              Review
+              Đánh giá
             </button>
           </li>
           <li>
@@ -321,7 +348,7 @@ const DetailProduct = () => {
               type="button"
               className="lg:block hidden text-lg font-semibold py-2 px-4 text-[#8a8a8a] hover:text-black transition-all"
             >
-              Shipping
+              Vận chuyển
             </button>
           </li>
           <li>
@@ -329,7 +356,7 @@ const DetailProduct = () => {
               type="button"
               className="lg:block hidden text-lg font-semibold py-2 px-4 text-[#8a8a8a] hover:text-black transition-all"
             >
-              Return
+              Trả hàng
             </button>
           </li>
         </ul>
@@ -343,7 +370,7 @@ const DetailProduct = () => {
 
       <div className="mt-24 mb-24">
         <h2 className="text-center text-lg lg:text-3xl font-semibold">
-          You may also like
+          Có thể bạn cũng thích
         </h2>
         <ul className="mt-8 lg:grid grid-cols-4 gap-7">
           {productsByCategory &&

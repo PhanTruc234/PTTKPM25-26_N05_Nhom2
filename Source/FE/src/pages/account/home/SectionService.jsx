@@ -10,28 +10,28 @@ export const SectionServices = () => {
           <li className="flex items-center lg:justify-center lg:flex-1 gap-[15px]">
             <img src={ico_freeship} alt="" />
             <span className="text-sm lg:text-base font-semibold">
-              Free Shipping Over $50
+              Miễn phí vận chuyển với đơn hàng từ 500.000 đ
             </span>
           </li>
 
           <li className="flex items-center lg:justify-center lg:flex-1 gap-[15px]">
             <img src={ico_quality} alt="" />
             <span className="text-sm lg:text-base font-semibold">
-              Quality Assurance
+              Đảm bảo chất lượng
             </span>
           </li>
 
           <li className="flex items-center lg:justify-center lg:flex-1 gap-[15px]">
             <img src={ico_return} alt="" />
             <span className="text-sm lg:text-base font-semibold">
-              Return within 14 days
+              Đổi trả trong 3 ngày
             </span>
           </li>
 
           <li className="flex items-center lg:justify-center lg:flex-1 gap-[15px]">
             <img src={ico_support} />
             <span className="text-sm lg:text-base font-semibold">
-              Support 24/7
+              Hỗ trợ 24/7
             </span>
           </li>
         </ul>

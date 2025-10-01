@@ -8,13 +8,16 @@ import { setCart, setCartNew } from "../../../store/features/cart/cartSlice";
 import { toast } from "react-toastify";
 import { setOrderNew } from "../../../store/features/order/orderSlice";
 // import { useEffect } from "react";
-import { getDetilProduct, updateProductAmount } from "../../../services/productService";
+import {
+  getDetilProduct,
+  updateProductAmount,
+} from "../../../services/productService";
 import { getImageUrl } from "../../../libs/img";
 import { cap } from "../../../libs/cap";
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cartSlice.items);
-  console.log(cartItems, ">>> cartItems")
+  console.log(cartItems, ">>> cartItems");
   const handleDecrementCart = async (productId, quantity) => {
     try {
       const res = await updateCart(productId, quantity);
@@ -40,7 +43,7 @@ const ShoppingCart = () => {
       const res = await deleteCart(id);
       const ress = await getDetilProduct(id);
       if (res.status === 200) {
-        await updateProductAmount(id, ress.data.amount + quantity)
+        await updateProductAmount(id, ress.data.amount + quantity);
         toast.success("Xóa thành công");
         dispatch(setCart(res.data.items));
       }
@@ -55,25 +58,25 @@ const ShoppingCart = () => {
         dispatch(setOrderNew([]));
         dispatch(setCartNew(res.data.items));
       }
-    } catch (error) { }
+    } catch (error) {}
   };
   return (
     <>
       {cartItems.length > 0 ? (
         <section className="pt-20">
-          <h2 className="text-3xl font-semibold text-center">Shopping Cart</h2>
+          <h2 className="text-3xl font-semibold text-center">Giỏ hàng</h2>
           <div className="container mt-10 grid grid-cols-6 gap-8">
             <div className="col-span-4">
               <div className="border border-gray rounded-lg">
                 <div className="flex">
                   <div className="p-5 border border-gray w-2/4 flex items-center justify-center">
-                    Product
+                    Sản phẩm
                   </div>
                   <div className="p-5 border border-gray w-1/4 flex items-center justify-center">
-                    Quantity
+                    Số lượng
                   </div>
                   <div className="p-5 border border-gray w-1/4 flex items-center justify-center">
-                    Total
+                    Thành tiền
                   </div>
                   <div className="p-5 border border-gray w-1/4 flex items-center justify-center"></div>
                 </div>
@@ -83,23 +86,34 @@ const ShoppingCart = () => {
                     <div className="p-5 border border-gray w-2/4">
                       <div className="flex items-center gap-3">
                         <div className="w-32 overflow-hidden">
-                          <img className="image" src={getImageUrl(product.productId.images[0])} alt="" />
+                          <img
+                            className="image"
+                            src={getImageUrl(product.productId.images[0])}
+                            alt=""
+                          />
                         </div>
                         <div>
-                          <p className="text-xs uppercase">{product.productId.name}</p>
-                          <span className="text-xs">{formatBigNumber(product.price, true)}</span>
+                          <p className="text-xs uppercase">
+                            {product.productId.name}
+                          </p>
+                          <span className="text-xs">
+                            {formatBigNumber(product.price, true)}
+                          </span>
                           <div className="mt-2 flex gap-4 text-xs">
                             <div className="flex items-center gap-1">
-                              <span className="font-medium">Color:</span>
-                              <span className="text-gray-700">{cap(product.color)}</span>
+                              <span className="font-medium">Màu sắc:</span>
+                              <span className="text-gray-700">
+                                {cap(product.color)}
+                              </span>
                             </div>
                             <div className="flex items-center gap-1">
-                              <span className="font-medium">Size:</span>
-                              <span className="text-gray-700">{product.size}</span>
+                              <span className="font-medium">Kích cỡ:</span>
+                              <span className="text-gray-700">
+                                {product.size}
+                              </span>
                             </div>
                           </div>
                         </div>
-
                       </div>
                     </div>
 
@@ -107,7 +121,10 @@ const ShoppingCart = () => {
                       <div className="flex items-center w-max relative">
                         <button
                           onClick={() =>
-                            handleDecrementCart(product.productId._id, product.quantity - 1)
+                            handleDecrementCart(
+                              product.productId._id,
+                              product.quantity - 1
+                            )
                           }
                           disabled={product.quantity === 1}
                           className="absolute left-4 text-2xl"
@@ -122,7 +139,10 @@ const ShoppingCart = () => {
                         />
                         <button
                           onClick={() =>
-                            handleIncrementCart(product.productId._id, product.quantity + 1)
+                            handleIncrementCart(
+                              product.productId._id,
+                              product.quantity + 1
+                            )
                           }
                           className="absolute right-4 text-2xl"
                         >
@@ -145,7 +165,11 @@ const ShoppingCart = () => {
                           )
                         }
                       >
-                        <img className="block size-5" src={ico_trash} alt="Remove" />
+                        <img
+                          className="block size-5"
+                          src={ico_trash}
+                          alt="Remove"
+                        />
                       </button>
                     </div>
                   </div>
@@ -163,8 +187,12 @@ const ShoppingCart = () => {
 
             <div className="col-span-2">
               <div className="p-7 bg-[#f7f4ef] rounded-lg">
-                <h3 className="uppercase font-medium text-sm">FREE SHIPPING ON ORDERS $100.00</h3>
-                <p className="text-sm mt-2">Congratulations, you've got free shipping!</p>
+                <h3 className="uppercase font-medium text-sm">
+                  FREE SHIPPING ON ORDERS $100.00
+                </h3>
+                <p className="text-sm mt-2">
+                  Congratulations, you've got free shipping!
+                </p>
                 <div className="bg-[#14c100] w-full h-1 mt-5"></div>
               </div>
 
@@ -184,7 +212,8 @@ const ShoppingCart = () => {
                     cartItems.reduce(
                       (total, item) => total + item.price * item.quantity,
                       0
-                    ), true
+                    ),
+                    true
                   )}
                 </p>
 
@@ -209,4 +238,4 @@ const ShoppingCart = () => {
     </>
   );
 };
-export default ShoppingCart
+export default ShoppingCart;
