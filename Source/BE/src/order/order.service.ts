@@ -1,15 +1,24 @@
 // src/order/order.service.ts
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Types } from 'mongoose';
+import { Connection, Model, Types } from 'mongoose';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order, OrderDocument, OrderStatus } from './schema/order.schema';
+import { Order, OrderDocument, OrderSchema, OrderStatus } from './schema/order.schema';
 import { OrderFactory } from './order.factory';
+import { DatabaseConnection } from 'src/common/database/database-connection';
 
 @Injectable()
 export class OrderService {
-  constructor(@InjectModel(Order.name) private orderModel: Model<OrderDocument>) { }
+  orderModel: Model<any, unknown, unknown, {}, any, any>;
+  constructor() {
+    const db: DatabaseConnection = DatabaseConnection.getInstance();
+    const connection: Connection = db.getConnection();
+    if (!connection.models['Order']) {
+      connection.model('Order', OrderSchema);
+    }
+    this.orderModel = connection.model('Order');
+  }
   async create(createOrderDto: CreateOrderDto): Promise<Order> {
     const orderData = OrderFactory.create(createOrderDto);
     const createdOrder = new this.orderModel(orderData);
