@@ -114,6 +114,19 @@ const AddProduct = () => {
     }
   };
   console.log(form, ">>>> form")
+  const handleRemoveAtt = (key, index) => {
+    let newAttte = [...form.attributes[key]];
+    newAttte = newAttte.slice(0, index);
+    setForm((prev) => {
+      const newAttributes = { ...prev.attributes };
+      if (newAttte.length > 0) {
+        newAttributes[key] = newAttte;
+      } else {
+        delete newAttributes[key];
+      }
+      return { ...prev, attributes: newAttributes };
+    });
+  }
   const handleAttrValueDelete = (key, index, value) => {
     console.log(key)
     console.log(index)
@@ -421,6 +434,9 @@ const AddProduct = () => {
                         ))}
                       </Stack>
                     </div>
+                    <IconButton >
+                      <DeleteIcon onClick={() => handleRemoveAtt(key, index)} />
+                    </IconButton>
                   </div>
                 ) : (<TextField
                   size="small"
