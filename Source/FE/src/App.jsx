@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect } from "react";
 import { setCart } from "./store/features/cart/cartSlice";
 import { getCarts } from "./services/cartSevice";
+import { Box, CircularProgress } from "@mui/material";
 
 function App() {
   const { accessToken } = useSelector((state) => state.authenSlice);
@@ -29,7 +30,9 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <Suspense fallback={<div>Đang tải...</div>}>
+      <Suspense fallback={<Box sx={{ display: 'flex', alignItems: 'center', justifyContent: "center", height: '100vh', }}>
+        <CircularProgress />
+      </Box>}>
         <Routes>
           {AccountRoutes}
           {AdminRoutes}

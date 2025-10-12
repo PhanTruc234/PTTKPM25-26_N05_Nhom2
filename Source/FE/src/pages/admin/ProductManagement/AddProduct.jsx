@@ -21,6 +21,7 @@ import { API_UPLOAD } from "../../../contants/apis";
 import axiosClient from "../../../services/axiosClient";
 import { getImageUrl } from "../../../libs/img";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { formatBigNumber } from "../../../libs/format-big-number";
 const SERVER = "http://localhost:3100";
 const AddProduct = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const AddProduct = () => {
   console.log(detailProduct, "lalalalala");
   const [newAtt, setNewAtt] = useState("");
   const [initialForm, setInitialForm] = useState(null);
+
   const [form, setForm] = useState({
     name: "",
     description: "",
@@ -53,10 +55,10 @@ const AddProduct = () => {
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setForm({
-      ...form,
-      [name]: value,
-    });
+    setForm((prev) => ({
+      ...prev,
+      [name]: value
+    }));
   };
   const uploadImageFile = async (files) => {
     const formData = new FormData();
@@ -128,11 +130,6 @@ const AddProduct = () => {
     });
   }
   const handleAttrValueDelete = (key, index, value) => {
-    console.log(key)
-    console.log(index)
-    console.log(value)
-    console.log(form.attributes[key])
-    console.log(form.attributes[key][index])
     const newAttte = [...form.attributes[key]]
     newAttte[index].sizes = newAttte[index].sizes.filter((chip) => chip !== value);
     setForm((prev) => ({
@@ -255,7 +252,7 @@ const AddProduct = () => {
       />
       <TextField
         fullWidth
-        type="number"
+        type="text"
         label="Giá"
         name="price"
         value={form.price}
