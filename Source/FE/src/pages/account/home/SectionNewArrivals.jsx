@@ -12,7 +12,7 @@ export const SectionNewArrivals = () => {
   const { state, dispatch } = useReducerUpdateFilterProducts();
   const { data, isLoading, error } = useGetListProducts({
     ...state,
-    limit: name === "/" ? 3 : 10,
+    limit: 3,
     sale: false,
   });
   console.log(data, "lkjsakjdksaj");
@@ -66,7 +66,7 @@ export const SectionNewArrivals = () => {
           className="flex items-center justify-center mt-3"
           page={state.page}
           onChange={(event, value) => handleChangePage(value)}
-          count={Math.ceil(data?.total / (name === "/" ? 3 : 10))}
+          count={Math.ceil(data?.total / 3)}
           shape="rounded"
         />
       </div>
