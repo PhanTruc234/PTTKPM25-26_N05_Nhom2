@@ -16,16 +16,19 @@ import { getImageUrl } from "../../../libs/img";
 import { cap } from "../../../libs/cap";
 const DetailPayment = () => {
   const { detailOrder, handleGetListOrder } = useGetListOrder({
-    limit: 10,
+    limit: 10000,
     page: 1,
   });
   const user = useSelector((state) => state.authenSlice);
+  console.log(">> user", user)
   const [dataOrder, setDataOrder] = useState([]);
   useEffect(() => {
     if (detailOrder) {
-      setDataOrder(detailOrder?.data?.data);
+      setDataOrder(detailOrder?.data);
     }
   }, [detailOrder]);
+  console.log(">>> detailOrder", detailOrder)
+  console.log(">>> dataOrder", dataOrder);
   const userOrders = useMemo(() => {
     return dataOrder
       .filter((order) => order?.userId?._id === user.user._id)

@@ -140,6 +140,10 @@ const AddProduct = () => {
   const getChangedFields = (original, updated) => {
     const changed = {};
     Object.keys(updated).forEach((key) => {
+      if (key === "attributes") {
+        changed[key] = updated[key];
+        return;
+      }
       const originalValue = original[key];
       const updatedValue = updated[key];
       const isObject =
@@ -179,6 +183,7 @@ const AddProduct = () => {
     try {
       if (idProduct) {
         const changedFields = getChangedFields(initialForm, parsedForm);
+        console.log("changedFields gửi đi:", changedFields);
         if (Object.keys(changedFields).length === 0) {
           toast.warning("Không có sự thay đổi nào", {
             autoClose: 500,
@@ -212,6 +217,7 @@ const AddProduct = () => {
             name: k.name,
             price: k?.variants[0]?.price ?? 0,
             sizes: k?.variants.map((item) => item.size).filter((u) => u !== "") || [],
+            code: k?.variants[0]?.code ?? "",
           }))
         }
       })

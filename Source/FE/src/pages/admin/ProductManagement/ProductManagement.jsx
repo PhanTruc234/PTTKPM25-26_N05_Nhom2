@@ -250,7 +250,7 @@ const ProductManagement = () => {
                           <div key={vIdx} className="flex gap-2 text-xs">
                             <span>Size: {variant.size}</span>
                             <span>Giá: {variant.price !== 0 ? formatBigNumber(variant.price, true) : formatBigNumber(item.price, true)}</span>
-                            <span>Mã: {variant.code}</span>
+                            <span>Mã: {variant.code ?? ""}</span>
                           </div>
                         ))}
                       </div>

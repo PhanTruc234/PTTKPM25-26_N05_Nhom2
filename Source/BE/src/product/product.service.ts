@@ -111,33 +111,51 @@ export class ProductService {
     id: string,
     updateProductDto: UpdateProductDto,
   ): Promise<Product> {
-    const updateData: any = { ...updateProductDto };
-
-    if (updateProductDto.categoryId) {
-      updateData.categoryId = new Types.ObjectId(updateProductDto.categoryId);
+    if (!Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid product ID');
     }
 
-    if (updateProductDto.attributes) {
-      updateData.attributes = new Map(
-        Object.entries(updateProductDto.attributes),
-      );
-    }
-
-    if (updateProductDto.amount !== undefined) {
-      updateData.amount = updateProductDto.amount;
-    }
-
-    const updated = await this.productModel
-      .findByIdAndUpdate(id, updateData, {
-        new: true,
-      })
-      .populate('categoryId');
-
-    if (!updated) {
+    const product = await this.productModel.findById(id);
+    if (!product) {
       throw new NotFoundException(`Product with ID ${id} not found`);
     }
 
-    return updated;
+    // Cập nhật attributes
+    if (updateProductDto.attributes) {
+      for (const key of Object.keys(updateProductDto.attributes)) {
+        const newAttr = updateProductDto.attributes[key];
+
+        if (key.toLowerCase() === "color") {
+          const oldColors = product.attributes.color || [];
+
+          const mergedColors = newAttr.map((newColor) => {
+            const existing = oldColors.find(c => c.name === newColor.name);
+            return {
+              name: newColor.name,
+              sizes: newColor.sizes || [],
+              price: newColor.price ?? (existing?.price ?? 0),
+              code: newColor.code ?? (existing?.code ?? ""),
+              variants: existing?.variants || [],
+            };
+          });
+          product.attributes.color = mergedColors;
+        } else {
+          product.attributes[key] = newAttr;
+        }
+      }
+    }
+
+    // Cập nhật các trường khác
+    if (updateProductDto.images) product.images = updateProductDto.images;
+    if (updateProductDto.amount !== undefined) product.amount = updateProductDto.amount;
+    if (updateProductDto.categoryId) product.categoryId = new Types.ObjectId(updateProductDto.categoryId);
+    if (updateProductDto.name) product.name = updateProductDto.name;
+    if (updateProductDto.description) product.description = updateProductDto.description;
+    if (updateProductDto.price !== undefined) product.price = updateProductDto.price;
+    if (updateProductDto.salePercent !== undefined) product.salePercent = updateProductDto.salePercent;
+
+    const updated = await product.save();
+    return this.productModel.populate(updated, { path: 'categoryId' });
   }
 
   async remove(id: string): Promise<void> {

@@ -51,7 +51,7 @@ async function bootstrap() {
   if (process.env.SEED === 'true') {
     const orderService = app.get(OrderService);
     const orderCount = await orderService['orderModel'].countDocuments();
-    if (orderCount < 10000) {
+    if (orderCount < 100) {
       const orderSeeder = app.get(OrderSeeder);
       await orderSeeder.seed();
       console.log('✅ Seeded 500 orders successfully!');
