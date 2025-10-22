@@ -1,13 +1,6 @@
 # 🛒 Project: Xây dựng ứng dụng bán hàng quần áo thời trang trên website
 
-## 📚 Mục lục
 
-- [👤 Thông Tin Cá Nhân](#-thông-tin-cá-nhân)
-- [📈 Mục Đích Dự Án](#-mục-đích-dự-án)
-- [🎯 Chức Năng Chính](#-chức-năng-chính)
-- [🛠️ Công Nghệ Sử Dụng](#️-công-nghệ-sử-dụng)
-
----
 
 ## 👤 Thông Tin Cá Nhân
 
@@ -20,6 +13,7 @@
 | 5   | Đỗ Thanh Tùng      | 23010811 |
 
 ---
+
 
 
 
