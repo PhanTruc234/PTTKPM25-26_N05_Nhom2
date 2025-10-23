@@ -9,4 +9,4 @@ import { Order, OrderSchema } from 'src/order/schema/order.schema';
   controllers: [PaymentController],
   providers: [PaymentService],
 })
-export class PaymentModule {}
+export class PaymentModule { }

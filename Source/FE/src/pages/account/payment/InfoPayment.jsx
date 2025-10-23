@@ -86,12 +86,12 @@ const InfoPayment = () => {
         handleGetListOrder();
         if (paymentMethod === "online") {
           const vnPayRes = await axios.post(
-            "http://localhost:3100/payment/createqr",
+            "http://localhost:3100/payment/create",
             { orderId: res.data._id }
           );
           console.log(vnPayRes, "vnPayResvnPayRes");
           // 3. Chuyển hướng sang VNPay
-          window.location.href = vnPayRes.data.paymentUrl;
+          window.location.href = vnPayRes.data.paymentLink.checkoutUrl;
         } else {
           toast.success("Thành công", {
             autoClose: 500,

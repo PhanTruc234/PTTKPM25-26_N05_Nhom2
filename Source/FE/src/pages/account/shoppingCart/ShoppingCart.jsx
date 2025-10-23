@@ -38,27 +38,33 @@ const ShoppingCart = () => {
       console.log(error);
     }
   };
-  const handleRemoveCartItem = async (id, amount, quantity) => {
+  const handleRemoveCartItem = async (index, productId, quantity) => {
     try {
-      const res = await deleteCart(id);
-      const ress = await getDetilProduct(id);
-      if (res.status === 200) {
-        await updateProductAmount(id, ress.data.amount + quantity);
-        toast.success("Xóa thành công");
-        dispatch(setCart(res.data.items));
+      const res = await deleteCart(productId);
+      console.log(res, "IDPRODUCT")
+      if (res.status !== 200) throw new Error("Xóa thất bại");
+      const ress = await getDetilProduct(productId);
+      await updateProductAmount(productId, ress.data.amount + quantity);
+      const updated = await getCarts();
+      if (updated.status === 200) {
+        dispatch(setCartNew(updated.data.items));
       }
+
+      toast.success("Xóa sản phẩm thành công");
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      toast.error("Xóa sản phẩm thất bại");
     }
   };
   const handleSetCartNew = async () => {
     try {
       const res = await getCarts();
+      console.log(res, "ooooooooooooooo")
       if (res.status === 200) {
         dispatch(setOrderNew([]));
         dispatch(setCartNew(res.data.items));
       }
-    } catch (error) {}
+    } catch (error) { }
   };
   return (
     <>
@@ -159,8 +165,8 @@ const ShoppingCart = () => {
                       <button
                         onClick={() =>
                           handleRemoveCartItem(
+                            index,
                             product.productId._id,
-                            product.productId.amount,
                             product.quantity
                           )
                         }

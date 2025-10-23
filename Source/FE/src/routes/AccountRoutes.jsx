@@ -48,6 +48,7 @@ import { Home } from "../pages/account/home/Home";
 import { Login } from "../pages/login/Login";
 import { Register } from "../pages/register/Register";
 import { lazy } from "react";
+import PaymentSuccess from "../pages/account/payment/PaymentSuccess";
 const DetailProduct = lazy(() => import("../pages/account/detail/DetailProduct"));
 const ShoppingCart = lazy(() => import("../pages/account/shoppingCart/ShoppingCart"));
 const Product = lazy(() => import("../pages/account/product/Product"));
@@ -76,6 +77,7 @@ export const AccountRoutes = (
     <Route path="/order" element={<InfoPayment />} />
     <Route path="/order-detail" element={<DetailPayment />} />
     <Route path="/payment/return" element={<PaymentReturn />} />
+    <Route path="/payment/success" element={<PaymentSuccess />} />
     <Route path="/payment-failed" element={<PaymentFailed />} />
     <Route path="profile" element={<Profile />}>
       <Route path="my-order" element={<InfoOrder />} />

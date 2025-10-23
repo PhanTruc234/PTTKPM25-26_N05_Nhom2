@@ -23,6 +23,7 @@ import {
   ApiOperation,
   ApiResponse,
 } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('Cart')
 @ApiBearerAuth()
@@ -56,6 +57,7 @@ export class CartController {
     return this.cartService.updateItem(user._id, dto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Delete('remove/:productId')
   @ApiOperation({ summary: 'Remove item from cart' })
   @ApiResponse({ status: 200 })

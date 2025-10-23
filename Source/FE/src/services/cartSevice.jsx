@@ -22,15 +22,15 @@ export const updateCart = async (productId, quantity) => {
     quantity,
   });
 };
-// export const deleteCart = async (id: any) => {
-//   const url = API_REMOVE_CART_ITEM.replace(":productId", id);
-//   return await axiosClient.delete(url);
-// };
 export const deleteCart = async (id) => {
-  return await axiosClient.delete(API_REMOVE_CART_ITEM, {
-    pathParams: { productId: id },
-  });
+  const url = API_REMOVE_CART_ITEM.replace(":productId", id);
+  return await axiosClient.delete(url);
 };
+// export const deleteCart = async (id) => {
+//   return await axiosClient.delete(API_REMOVE_CART_ITEM, {
+//     pathParams: { productId: id },
+//   });
+// };
 export const getCarts = async () => {
   return await axiosClient.get(API_GET_CARTS);
 };

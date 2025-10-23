@@ -29,6 +29,7 @@
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.1.2",
     "@nestjs/swagger": "^11.2.0",
+    "@payos/node": "1.0.3",
     "@prisma/client": "^6.8.2",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",

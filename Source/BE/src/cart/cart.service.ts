@@ -87,22 +87,18 @@ export class CartService {
     return cart.populate('items.productId');
   }
 
-  async removeItem(userId: string, productId: string, color?: string, size?: string): Promise<Cart> {
+  async removeItem(userId: string, productId: string): Promise<Cart> {
     const cart = await this.cartModel.findOne({ userId }).exec();
     if (!cart) throw new NotFoundException('Cart not found');
 
     cart.items = cart.items.filter(
-      (item) =>
-        !(
-          item.productId.toString() === productId &&
-          item.color === color &&
-          item.size === size
-        ),
+      (item) => item.productId.toString() !== productId
     );
 
     await cart.save();
     return cart.populate('items.productId');
   }
+
 
   async clearCart(userId: string): Promise<void> {
     const cart = await this.cartModel.findOne({ userId }).exec();
