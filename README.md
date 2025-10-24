@@ -5,10 +5,12 @@
 - [👤 Thông Tin Cá Nhân](#-thông-tin-cá-nhân)
 - [📈 Mục Đích Dự Án](#-mục-đích-dự-án)
 - [🛠️ Công Nghệ Sử Dụng](#️-công-nghệ-sử-dụng)
-- [📊 Sơ Đồ Tuần Tự](#-sơ-đồ-tuần-tự)
+- [⚙️ Hướng Dẫn Cài Đặt & Chạy Dự Án](#️-hướng-dẫn-cài-đặt--chạy-dự-án)
+- [📊 Sơ Đồ Chức Năng](#-sơ-đồ-chức-năng)
 - [📸 Một Số Hình Ảnh Giao Diện](#-một-số-hình-ảnh-giao-diện)
-- [🔗Liên Kết](#-liên-kết)
+- [🔗 Liên Kết](#-liên-kết)
 
+---
 
 ## 👤 Thông Tin Cá Nhân
 
@@ -20,57 +22,69 @@
 | 4   | Phan Minh Trúc     | 23010818  |
 | 5   | Đỗ Thanh Tùng      | 23010811  |
 
+---
+
+## 📈 Mục Đích Dự Án
+
+Dự án **Website bán hàng quần áo thời trang online** được xây dựng nhằm tạo ra một **nền tảng thương mại điện tử hiện đại**, hỗ trợ người tiêu dùng mua sắm trực tuyến dễ dàng, đồng thời giúp doanh nghiệp mở rộng thị trường và quản lý hiệu quả hoạt động kinh doanh.
+
+### 🎯 Các mục tiêu chính:
+
+#### 1️⃣ Nền tảng mua sắm tiện lợi & an toàn  
+- Giúp người dùng **tìm kiếm, lựa chọn và đặt mua sản phẩm** mọi lúc, mọi nơi.  
+- Cung cấp **thông tin sản phẩm chi tiết**: giá, hình ảnh, mô tả, đánh giá.  
+- Đảm bảo **bảo mật dữ liệu cá nhân và thanh toán**.  
+
+#### 2️⃣ Hỗ trợ doanh nghiệp trong quản lý & vận hành  
+- Quản lý **sản phẩm, đơn hàng, khách hàng, doanh thu**.  
+- Giảm chi phí, tăng hiệu quả vận hành.  
+- Cung cấp **báo cáo thống kê** để phân tích kinh doanh.  
+
+#### 3️⃣ Trải nghiệm người dùng tối ưu  
+- Giao diện thân thiện, trực quan, dễ thao tác.  
+- Hỗ trợ **giỏ hàng, thanh toán, đánh giá sản phẩm, theo dõi đơn hàng**.  
+
+#### 4️⃣ Phát triển lâu dài  
+- Có khả năng **mở rộng, nâng cấp** với các tính năng mới như khuyến mãi, gợi ý sản phẩm, chatbot hỗ trợ.  
 
 ---
-##📈 Mục Đích Dự Án
-Mục đích của dự án Website bán hàng quần áo thời  online là xây dựng một hệ thống thương mại điện tử hiện đại, đáp ứng nhu cầu mua sắm trực tuyến ngày càng tăng của người tiêu dùng, đồng thời hỗ trợ doanh nghiệp mở rộng thị trường và quản lý hoạt động kinh doanh hiệu quả hơn. Cụ thể, dự án hướng đến các mục tiêu sau:
 
-1. Cung cấp nền tảng mua sắm tiện lợi và an toàn cho khách hàng
+## 🛠️ Công Nghệ Sử Dụng
 
-Giúp người tiêu dùng có thể dễ dàng tìm kiếm, lựa chọn và đặt mua sản phẩm mọi lúc, mọi nơi chỉ với vài thao tác đơn giản.
+| Công Nghệ     | Vai Trò Chính                            |
+|----------------|-------------------------------------------|
+| **NestJS**     | Framework Backend – xử lý API và logic nghiệp vụ |
+| **ReactJS**    | Xây dựng giao diện người dùng (Frontend) |
+| **MongoDB**    | Cơ sở dữ liệu NoSQL lưu trữ thông tin sản phẩm, người dùng, đơn hàng |
+| **TailwindCSS**| Thiết kế giao diện đẹp, responsive, dễ tùy chỉnh |
+| **JWT**        | Xác thực & bảo mật người dùng khi đăng nhập |
 
-Tạo môi trường mua sắm thân thiện, nhanh chóng và bảo mật, giúp người dùng yên tâm khi giao dịch trực tuyến.
+---
 
-Cung cấp đầy đủ thông tin về sản phẩm: giá cả, hình ảnh, thông số kỹ thuật, đánh giá và phản hồi của khách hàng khác.
+## ⚙️ Hướng Dẫn Cài Đặt & Chạy Dự Án
 
-2. Hỗ trợ doanh nghiệp trong quản lý và kinh doanh
+### 🔧 1. Yêu Cầu Hệ Thống
+- Node.js >= 18  
+- npm hoặc yarn  
+- MongoDB Community Server  
+- Git (tùy chọn, nếu clone code từ GitHub)
 
-Giúp doanh nghiệp giảm chi phí vận hành so với hình thức kinh doanh truyền thống (thuê mặt bằng, nhân viên, quảng cáo trực tiếp...).
+### 📦 2. Cài Đặt Dự Án
+```bash
+# Clone repository
+git clone https://github.com/PhanTruc234/PTTKPM25-26_N05_Nhom2
 
-Tăng khả năng tiếp cận khách hàng trên phạm vi rộng, không bị giới hạn bởi vị trí địa lý.
+# Di chuyển vào thư mục dự án
+cd Source
 
-Cung cấp các công cụ quản lý đơn hàng, khách hàng, doanh thu và thống kê giúp nhà quản trị dễ dàng theo dõi tình hình kinh doanh và ra quyết định.
+# Cài đặt Frontend
+cd FE
+npm install
+npm run dev
 
-3. Nâng cao trải nghiệm người dùng và khả năng cạnh tranh
+# Cài đặt Backend
+cd BE
+npm install
+npm run start:dev
 
-Xây dựng giao diện thân thiện, dễ sử dụng, phù hợp với nhiều đối tượng khách hàng.
 
-Tích hợp các chức năng như giỏ hàng, thanh toán trực tuyến, đánh giá sản phẩm, theo dõi đơn hàng,... nhằm mang đến trải nghiệm trọn vẹn.
-
-Đảm bảo hệ thống bảo mật dữ liệu cá nhân và thông tin thanh toán, tăng niềm tin cho người dùng.
-
-4. Định hướng phát triển lâu dài
-
-Là nền tảng có thể mở rộng và nâng cấp dễ dàng để tích hợp thêm các tính năng mới như khuyến mãi, gợi ý sản phẩm, chăm sóc khách hàng tự động.
-
-Tạo cơ sở để doanh nghiệp phát triển chiến lược marketing trực tuyến hiệu quả hơn, hướng đến mô hình kinh doanh thương mại điện tử bền vững.
-
-##🛠️ Công Nghệ Sử Dụng
- Công nghệ        | Vai trò chính                        |
-|------------------|--------------------------------------|
-| **Nest.js**      | Framework Backend                    |
-| **ReactJS**      | Code giao diện và logic Frontend     |
-| **MongoDB**      | Cơ sở dữ liệu chính                  |
-| **TailwindCSS**  |Tạo giao diện đẹp, đồng nhất          |
-
-##📊 Sơ Đồ Tuần Tự
-- **Quản lý đăng nhập và khách hàng**
-- **Quản lý giỏ hàng**
-- **Quản lý đơn hàng**
-- **Quản lý thanh toán**
-- **Quản lý danh mục**
-
-##📸 Một Số Hình Ảnh Giao Diện
-
-##🔗Liên Kết
--Figma :https://www.figma.com/design/iYz587Jz8j7YsshYBJW1nn/Thi%E1%BA%BFt-k%E1%BA%BF?node-id=0-1&m=dev&t=osQRIxiuLHIVp5Sk-1
