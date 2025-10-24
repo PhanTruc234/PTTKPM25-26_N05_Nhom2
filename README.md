@@ -87,16 +87,33 @@ cd BE
 npm install
 npm run start:dev
 
-
+````
 ---
 
 ##📊 Sơ Đồ Trình Tự
+### 1.Sơ đồ quản lý sản phẩm
+<img width="624" height="812" alt="qlsp" src="https://github.com/user-attachments/assets/e5232f6c-a696-425e-b007-b3046d681ff2" />
+### 2.Sơ đồ quản lý danh mục
+<img width="624" height="812" alt="qldm" src="https://github.com/user-attachments/assets/061b029b-cf91-4afc-a682-3dcb1b73aca1" />
+### 3.Sơ đồ ưuarn lý thanh toán
+<img width="624" height="812" alt="qltt" src="https://github.com/user-attachments/assets/a6b5a9af-503d-4950-904f-8e5ce917f711" />
+### 4.Sơ đồ quản lý đơn hàng
+<img width="624" height="812" alt="qldh" src="https://github.com/user-attachments/assets/faeac2cb-8919-49c6-8dd5-32ae1c6d6bce" />
+### 5.Sơ đồ giao hàng
+<img width="624" height="812" alt="gh" src="https://github.com/user-attachments/assets/584f44ab-8047-4985-8ace-48d8664deb83" />
+### 6.Sơ đồ quản lý đăng nhập & khách hàng
+<img width="624" height="812" alt="qldn kh" src="https://github.com/user-attachments/assets/528b57b1-226a-4b70-98fc-280010451418" />
+
 
 
 ---
+
 ##📸 Một Số Hình Ảnh Giao Diện
 
 
 ---
-#🔗 Liên Kết
+
+
+##🔗 Liên Kết
+
 
