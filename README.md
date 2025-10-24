@@ -6,7 +6,7 @@
 - [📈 Mục Đích Dự Án](#-mục-đích-dự-án)
 - [🛠️ Công Nghệ Sử Dụng](#️-công-nghệ-sử-dụng)
 - [⚙️ Hướng Dẫn Cài Đặt & Chạy Dự Án](#️-hướng-dẫn-cài-đặt--chạy-dự-án)
-- [📊 Sơ Đồ Chức Năng](#-sơ-đồ-chức-năng)
+- [📊 Sơ Đồ Trình Tự](#-sơ-đồ-trình-tự)
 - [📸 Một Số Hình Ảnh Giao Diện](#-một-số-hình-ảnh-giao-diện)
 - [🔗 Liên Kết](#-liên-kết)
 
@@ -87,4 +87,16 @@ cd BE
 npm install
 npm run start:dev
 
+
+---
+
+##📊 Sơ Đồ Trình Tự
+
+
+---
+##📸 Một Số Hình Ảnh Giao Diện
+
+
+---
+#🔗 Liên Kết
 
