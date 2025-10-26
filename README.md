@@ -6,7 +6,6 @@
 - [📈 Mục Đích Dự Án](#-mục-đích-dự-án)
 - [🛠️ Công Nghệ Sử Dụng](#️-công-nghệ-sử-dụng)
 - [⚙️ Hướng Dẫn Cài Đặt & Chạy Dự Án](#️-hướng-dẫn-cài-đặt--chạy-dự-án)
-- [📸 Một Số Hình Ảnh Giao Diện](#-một-số-hình-ảnh-giao-diện)
 - [🔗 Liên Kết](#-liên-kết)
 
 ---
@@ -90,9 +89,10 @@ npm run start:dev
 ---
 
 
-##🔗 Liên Kết
+## 🔗 Liên Kết
 
 -Figma: https://www.figma.com/design/iYz587Jz8j7YsshYBJW1nn/Thi%E1%BA%BFt-k%E1%BA%BF?node-id=0-1&p=f&t=0YtOGJ247Dm7oqJK-0
+
 
 
 
